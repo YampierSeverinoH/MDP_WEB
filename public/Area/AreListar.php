@@ -10,11 +10,12 @@ include("../menu.php");
             ListarAreas('<?php echo WS . '/ws_area.php' ?>');
         </script>
         <center>
-            <h1 class="h4">listado de areas</h1><br>
+            <h1 class="h4">LISTADO DE AREAS</h1><br> </center>
+
             <div id="ConModAreas" class="row row-cols-3 gap-3">
                 
             </div>
-        </center>
+       
     </div>
 </div>
 </div>

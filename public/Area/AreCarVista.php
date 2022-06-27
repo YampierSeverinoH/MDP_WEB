@@ -93,7 +93,7 @@ include("../menu.php");
                     </div>
                     <div class="col">
                         <center>
-                            <button name="btnSaveCargo" id="btnSaveCargo" class="btn btn-success">Guardar</button>
+                            <button name="btnSaveCargo" id="btnSaveCargo" class="btn btn-success" onclick="RegCargo();Mensaje()">Guardar</button>
                             <button name="btncleanCargo" id="btncleanCargo" class="btn btn-primary" type="">Cancelar</button>
                         </center>
                     </div>
