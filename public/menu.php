@@ -111,7 +111,7 @@ $nombre = $_SESSION['nombre'];
                                         </font>
                                     </a>
                                 </li>
-                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
+                                <li><a href="<?php echo AREA; ?>/CarListar.php" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
                                             <font style="vertical-align: inherit;">Ver Cargos</font>
                                         </font>

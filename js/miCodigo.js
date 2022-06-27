@@ -141,10 +141,10 @@ function ListarAreas(ur) {
                     res.innerHTML += `
                     <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">${item.Are_Nombre}</h5>
-                      <p class="card-text">${item.Are_Descripcion}</p>
-                      <p class="card-text">Estado: ${item.Are_Estado}</p>
-                      <a href="AreEditar.php?id=${item.Are_Id}" class="btn btn-primary">Editar</a>
+                      <h5 class="card-title text-center">${item.Are_Nombre}</h5>
+                      <p class="card-text text-start">${item.Are_Descripcion}</p>
+                      <p class="card-text">Estado: ${leerEsatdo(item.Are_Estado)}</p><br>
+                      <a href="AreEditar.php?id=${item.Are_Id}" class="btn btn-primary position-absolute bottom-0 start-50 translate-middle-x">Editar</a>
                     </div>
                   </div>`;
                 }
@@ -154,7 +154,6 @@ function ListarAreas(ur) {
     }
 }
 function UpdateArea() {
-    console.log("acceso");
     var nom = document.getElementById("txtNomAreaUpd").value;
     var des = document.getElementById("txtDesAreaUpd").value;
     var est = document.getElementById("slcEstAreaUpd").value;
@@ -166,7 +165,6 @@ function UpdateArea() {
         "idArea":id,
         "action": "actualizar"
     };
-    console.log(data);
     $.ajax({
         data: data, //datos que se envian a traves de ajax
         url: '/Model/WebService/ws_area.php', //archivo que recibe la peticion
@@ -174,3 +172,81 @@ function UpdateArea() {
     });
 }
 //<a href="/Model/WebService/ws_area.php?id=${item.Are_Id}&action=Editar" class="btn btn-primary">Editar</a>
+
+//CRUD DE CARGOS
+function RegCargo() {
+    var nom = document.getElementById("txtNomCargo").value;
+    var des = document.getElementById("txtDesCargo").value;
+    var est = document.getElementById("slcEstCargo").value;
+    var data = {
+        "nomArea": nom,
+        "estArea": est,
+        "desArea": des,
+        "action": "Registro"
+    };
+
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_cargo.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+    });
+}
+function leerEsatdo(estado){
+    var rsp;
+    if(estado==="A"){
+        rsp= "Activo";
+    }else if(estado==="I"){
+        rsp=  "Inactivo";
+    }else{
+        rsp=  "Observaciones";
+    }
+    return rsp;
+}
+function ListarCargo(ur) {
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#ConModCargo');
+            res.innerHTML = '';
+            if(datos===""){
+                alert("no existen datos");
+            }else{
+                for (let item of datos) {
+                    res.innerHTML += `
+                    <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">${item.Car_nombre}</h5>
+                      <p class="card-text text-start">${item.Car_Descripcion}</p>
+                      <p class="card-text">Estado: ${leerEsatdo(item.Car_Estado)}</p><br>
+                      <a href="CarEditar.php?id=${item.Car_Id}" class="btn btn-primary position-absolute bottom-0 start-50 translate-middle-x">Editar</a>
+                    </div>
+                  </div>`;
+                }
+            }
+            
+        }
+    }
+}
+function UpdateCargo() {
+    var nom = document.getElementById("txtNomCargoUpd").value;
+    var des = document.getElementById("txtDesCargoUpd").value;
+    var est = document.getElementById("slcEstCargoUpd").value;
+    var id = document.getElementById("idCargoUpd").value;
+    var data = {
+        "nomArea": nom,
+        "estArea": est,
+        "desArea": des,
+        "idArea":id,
+        "action": "actualizar"
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_cargo.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+    });
+}
