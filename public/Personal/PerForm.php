@@ -13,6 +13,9 @@ include("../menu.php");
         <script>
             //aqui se llama al api departtamentos para que se a lo primero al iniciar la pagina
             ListarDepartamentos('<?php echo JS . '/api_departamentos.json' ?>');
+            ListarAreasSelect('<?php echo WS . '/ws_area.php' ?>');
+            ListarCargoSelect('<?php echo WS . '/ws_cargo.php' ?>');
+
         </script>
             <h5>Datos Personales</h5>
             <!-- REGISTRO DEL PERSONAL -->
@@ -38,13 +41,13 @@ include("../menu.php");
                     <div class="col">
                         <div class="form-group">
                             <label for="">DNI: </label>
-                            <input type="text" name="" id="" class="form-control" placeholder="12345678" maxlength="8" aria-describedby="helpId">
+                            <input type="text" name="txtDocPer" id="txtDocPer" class="form-control" placeholder="12345678" maxlength="8" aria-describedby="helpId">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Fecha de Nacimiento: </label>
-                            <input type="date" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                            <input type="date" name="dateFecNacPer" id="dateFecNacPer" class="form-control" placeholder="" aria-describedby="helpId">
                         </div>
                     </div>
                 </div>
@@ -54,7 +57,7 @@ include("../menu.php");
                     <div class="col-5">
                         <div class="form-group">
                             <label for="">Direccion: </label>
-                            <input type="text" name="direccion" id="txtDir" class="form-control" placeholder="Jr. Av. Calle. direccion #32 " aria-describedby="helpId">
+                            <input type="text" name="txtDirper" id="txtDirper" class="form-control" placeholder="Jr. Av. Calle. direccion #32 " aria-describedby="helpId">
                         </div>
                     </div>
                     <div class="col">
@@ -86,21 +89,21 @@ include("../menu.php");
                     <div class="col">
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" class="form-control" name="txtEmail" id="idtxtEmail" aria-describedby="emailHelpId" placeholder="email@email.xyz">
+                            <input type="email" class="form-control" name="txtEmaPer" id="txtEmaPer" aria-describedby="emailHelpId" placeholder="email@email.xyz">
 
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Telefono</label>
-                            <input type="tel" class="form-control" name="txtTel" id="idTxtTel" aria-describedby="emailHelpId" placeholder="+51 000 000 000">
+                            <input type="tel" class="form-control" name="txtTelPer" id="txtTelPer" aria-describedby="emailHelpId" placeholder="+51 000 000 000">
 
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Sexo</label>
-                            <select class="form-control" name="" id="slcSexo">
+                            <select class="form-control" name="slcSexo" id="slcSexo">
                                 <option value="m">Masculino</option>
                                 <option value="f">Femenino</option>
                                 <option value="x">otros</option>
@@ -120,7 +123,7 @@ include("../menu.php");
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Area:</label>
-                                <select class="form-control" name="" id="slcArea">
+                                <select class="form-control" name="slcArea" id="slcArea">
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -184,7 +187,7 @@ include("../menu.php");
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="submit" value="Guardar">
+                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="" onclick="RegistroPersonal()" value="Guardar">
                 </div>
             </div>
 

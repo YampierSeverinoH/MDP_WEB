@@ -135,7 +135,7 @@ function ListarAreas(ur) {
             let res = document.querySelector('#ConModAreas');
             res.innerHTML = '';
             if(datos===""){
-                alert("no existen datos");
+                alert("no existen datos en areas");
             }else{
                 for (let item of datos) {
                     res.innerHTML += `
@@ -147,6 +147,29 @@ function ListarAreas(ur) {
                       <a href="AreEditar.php?id=${item.Are_Id}" class="btn btn-primary position-absolute bottom-0 start-50 translate-middle-x">Editar</a>
                     </div>
                   </div>`;
+                }
+            }
+            
+        }
+    }
+}
+function ListarAreasSelect(ur) {
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#slcArea');
+            res.innerHTML = '';
+            if(datos===""){
+                alert("no existen datos");
+            }else{
+                for (let item of datos) {
+                    res.innerHTML += `<option value="${item.Are_Id}">${item.Are_Nombre}</option>`;
+
                 }
             }
             
@@ -232,6 +255,29 @@ function ListarCargo(ur) {
         }
     }
 }
+function ListarCargoSelect(ur) {
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#slcCargo');
+            res.innerHTML = '';
+            if(datos===""){
+                alert("no existen datos");
+            }else{
+                for (let item of datos) {
+                    res.innerHTML += `<option value="${item.Car_Id}">${item.Car_nombre}</option>`;
+
+                }
+            }
+            
+        }
+    }
+}
 function UpdateCargo() {
     var nom = document.getElementById("txtNomCargoUpd").value;
     var des = document.getElementById("txtDesCargoUpd").value;
@@ -247,6 +293,40 @@ function UpdateCargo() {
     $.ajax({
         data: data, //datos que se envian a traves de ajax
         url: '/Model/WebService/ws_cargo.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+    });
+}
+//REGISTRO DEL PERSONAL
+function RegistroPersonal(){
+    var nombre = document.getElementById("txtNombre").value;
+    var apellidos= document.getElementById("txtApellido").value;
+    var documento= document.getElementById("txtDocPer").value;
+    var fechaNac = document.getElementById("dateFecNacPer").value;
+    var direccion= document.getElementById("txtDirper").value;
+    var dep= document.getElementById("slcDep").value;
+    var prov = document.getElementById("slcProv").value;
+    var dis= document.getElementById("slcDist").value;
+    var email = document.getElementById("txtEmaPer").value;
+    var telefono = document.getElementById("txtTelPer").value;
+    var sexo= document.getElementById("slcSexo").value;
+    var data = {
+        "nombre": nombre,
+        "apellidos": apellidos,
+        "documento": documento,
+        "fechaNac":fechaNac,
+        "direccion": direccion,
+        "dep": dep,
+        "prov": prov,
+        "dis":dis,
+        "email":email,
+        "telefono": telefono,
+        "sexo": sexo,
+        "action": "Registro"
+    };
+    console.log(data);
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
         type: 'post', //método de envio
     });
 }
