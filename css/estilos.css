@@ -1,0 +1,98 @@
+/* id ->#
+class -> . */
+
+
+/* IDENTIFICADORES */
+#contLogin{
+    margin-top: 3%;
+    background-color: rgba(0, 166, 255, 0.29);
+    opacity: 0.8;
+    height: 650px;
+}
+#contImgLogin{
+    height: 635px;
+    width: 685px;
+    margin-left: 5px;
+}
+#ContenFrom{
+    height: 500px;
+    width: 450px;
+    margin-top: 10%;
+    margin-left: 15%;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: white;
+}
+#LoginTitulo{
+        color: #47525E;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 36px;
+        line-height: 51px;
+        width: 443px;
+        text-align: center;
+}
+#LoginMensaje{
+        color: #8190A5;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        line-height: 28px;
+        width: 273px;
+        margin-left: 18%;
+        text-align: center;
+      
+}
+#LoginForm{
+    margin-inline: 20px;
+}
+#LoginBtnIngresar{
+    background-color: #77D353;
+    border-radius: 5px;
+    color: white;
+    width: 231px;
+    height: 43px;
+    margin-top: 25%;
+    margin-left: 22%;
+}
+#LoginRecPass{
+    margin-top: 30px;
+    text-align: end;
+}
+#FondoMenu{
+    background: #d4eff9;
+    padding: 10px;
+}
+#btnFormRegPer{
+    width: 50%;
+}
+#MarEsp{
+    padding: 2%;
+    margin-bottom: 30px;
+}
+/* CLASES */
+.espacioado{
+    margin-top: 10px ;
+    margin-left: 20px;
+    width: 150px;
+}
+.espacioado :hover{
+    color:white;
+    background: #74d86b;
+    size: 30px;
+    border-radius: 10px;
+    width: 100px;
+    padding-left: 5px;
+}
+.MenuInfo{
+    background: #47525E;
+
+}
+.infoMenu{
+    margin-left: 21%;
+    display: flex;
+}
+.ContForm{
+    padding:15px;
+    border:2px solid rgba(0, 166, 255, 0.29);
+    border-radius: 10px;
+    
+}
