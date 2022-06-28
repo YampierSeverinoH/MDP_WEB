@@ -149,6 +149,7 @@ include("../menu.php");
                 </div>
             </div><br>
             <!-- REGISTRO DE FOTO DE PERFIL Y DE HUELLAS -->
+            
             <div class="container">
                 <!-- imagenes a cargar -->
                 <div class="ContForm">
@@ -160,7 +161,7 @@ include("../menu.php");
                             <div class="row">
                                 <div class="form-group">
                                     <label for="">Foto de perfil</label><br>
-                                    <input type="file" class="form-control-file" onclick="PreVisualizarPerfil()" name="" id="FileFormPerfil" placeholder="" aria-describedby="fileHelpId">
+                                    <input type="file" class="form-control-file" onclick="PreVisualizarPerfil()" name="FileFormPerfil" id="FileFormPerfil" placeholder="" aria-describedby="fileHelpId">
                                 </div>
                             </div><br>
                             <div class="row justify-content-center">
@@ -183,11 +184,11 @@ include("../menu.php");
                     </div>
 
                 </div>
-            </div><br>
+            </div><br> 
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="" onclick="RegistroPersonal()" value="Guardar">
+                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="button" onclick="RegistroPersonal()" value="Guardar">
                 </div>
             </div>
 
@@ -196,7 +197,6 @@ include("../menu.php");
 </div>
 </div>
 </div>
-
 </div>
 </body>
 

@@ -1,6 +1,22 @@
 <?PHP
 include("../menu.php");
-
+if (isset($_GET['id'])) {
+    $idpersona = $_GET['id'];
+?>
+    <script>
+         MuestraPersonalEditar('<?php echo $idpersona ?>');
+        //ListarAreasSelect('<?php echo WS . '/ws_area.php' ?>');
+        //ListarCargoSelect('<?php echo WS . '/ws_cargo.php' ?>');
+       
+    </script>
+<?PHP
+} else {
+?>
+    <script>
+        swal("Error", "No se seleciono ningun identificador", "error");
+    </script>
+<?PHP
+}
 ?>
 
 <!-- <?PHP ?> este apartado es el contenido del programa -->
@@ -10,20 +26,7 @@ include("../menu.php");
         <center>
             <h1 class="h4">Actualizar personal</h1>
         </center>
-        <div class="container">
-        <label for="">Personal a buscar: </label>
-            <div class="row justify-content-start">
-                <div class="col-4">
-                    <div class="form-group">
-                        
-                        <input type="text" name="nombre" id="txtNombre" class="form-control" placeholder="Ingrese DNI" aria-describedby="helpId">
-                    </div>
-                </div>
-                <div class="col">
-                    <a name="" id="" class="btn btn-primary" href="#" role="button">buscar</a>
-                </div>
-            </div>
-        </div><br>
+
         <script>
             //aqui se llama al api departtamentos para que se a lo primero al iniciar la pagina
         </script>
@@ -56,7 +59,7 @@ include("../menu.php");
                 <div class="col">
                     <div class="form-group">
                         <label for="">Departamento</label>
-                        <select class="form-control" name="slcDepartamento" id="slcDep" disabled>
+                        <select class="form-control" name="slcDepartamento" id="slcDep" >
 
                         </select>
                     </div>
@@ -97,7 +100,9 @@ include("../menu.php");
                     <div class="form-group">
                         <label for="">Sexo</label>
                         <select disabled class="form-control" name="" id="slcSexo">
-                            <option value="m"></option>
+                            <option value="m">Masculino</option>
+                            <option value="f">Femenino</option>
+                            <option value="x">otros</option>
                         </select>
                     </div>
                     <br>

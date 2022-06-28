@@ -134,9 +134,9 @@ function ListarAreas(ur) {
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#ConModAreas');
             res.innerHTML = '';
-            if(datos===""){
+            if (datos === "") {
                 alert("no existen datos en areas");
-            }else{
+            } else {
                 for (let item of datos) {
                     res.innerHTML += `
                     <div class="card">
@@ -149,12 +149,11 @@ function ListarAreas(ur) {
                   </div>`;
                 }
             }
-            
+
         }
     }
 }
 function ListarAreasSelect(ur) {
-
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', ur, true);
     xhttp.send();
@@ -164,15 +163,15 @@ function ListarAreasSelect(ur) {
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#slcArea');
             res.innerHTML = '';
-            if(datos===""){
+            if (datos === "") {
                 alert("no existen datos");
-            }else{
+            } else {
                 for (let item of datos) {
                     res.innerHTML += `<option value="${item.Are_Id}">${item.Are_Nombre}</option>`;
 
                 }
             }
-            
+
         }
     }
 }
@@ -185,7 +184,7 @@ function UpdateArea() {
         "nomArea": nom,
         "estArea": est,
         "desArea": des,
-        "idArea":id,
+        "idArea": id,
         "action": "actualizar"
     };
     $.ajax({
@@ -214,14 +213,14 @@ function RegCargo() {
         type: 'post', //método de envio
     });
 }
-function leerEsatdo(estado){
+function leerEsatdo(estado) {
     var rsp;
-    if(estado==="A"){
-        rsp= "Activo";
-    }else if(estado==="I"){
-        rsp=  "Inactivo";
-    }else{
-        rsp=  "Observaciones";
+    if (estado === "A") {
+        rsp = "Activo";
+    } else if (estado === "I") {
+        rsp = "Inactivo";
+    } else {
+        rsp = "Observaciones";
     }
     return rsp;
 }
@@ -236,9 +235,9 @@ function ListarCargo(ur) {
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#ConModCargo');
             res.innerHTML = '';
-            if(datos===""){
+            if (datos === "") {
                 alert("no existen datos");
-            }else{
+            } else {
                 for (let item of datos) {
                     res.innerHTML += `
                     <div class="card">
@@ -251,7 +250,7 @@ function ListarCargo(ur) {
                   </div>`;
                 }
             }
-            
+
         }
     }
 }
@@ -266,15 +265,15 @@ function ListarCargoSelect(ur) {
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#slcCargo');
             res.innerHTML = '';
-            if(datos===""){
+            if (datos === "") {
                 alert("no existen datos");
-            }else{
+            } else {
                 for (let item of datos) {
                     res.innerHTML += `<option value="${item.Car_Id}">${item.Car_nombre}</option>`;
 
                 }
             }
-            
+
         }
     }
 }
@@ -287,7 +286,7 @@ function UpdateCargo() {
         "nomArea": nom,
         "estArea": est,
         "desArea": des,
-        "idArea":id,
+        "idArea": id,
         "action": "actualizar"
     };
     $.ajax({
@@ -297,28 +296,29 @@ function UpdateCargo() {
     });
 }
 //REGISTRO DEL PERSONAL
-function RegistroPersonal(){
+function RegistroPersonal() {
     var nombre = document.getElementById("txtNombre").value;
-    var apellidos= document.getElementById("txtApellido").value;
-    var documento= document.getElementById("txtDocPer").value;
+    var apellidos = document.getElementById("txtApellido").value;
+    var documento = document.getElementById("txtDocPer").value;
     var fechaNac = document.getElementById("dateFecNacPer").value;
-    var direccion= document.getElementById("txtDirper").value;
-    var dep= document.getElementById("slcDep").value;
+    var direccion = document.getElementById("txtDirper").value;
+    var dep = document.getElementById("slcDep").value;
     var prov = document.getElementById("slcProv").value;
-    var dis= document.getElementById("slcDist").value;
+    var dis = document.getElementById("slcDist").value;
     var email = document.getElementById("txtEmaPer").value;
     var telefono = document.getElementById("txtTelPer").value;
-    var sexo= document.getElementById("slcSexo").value;
+    var sexo = document.getElementById("slcSexo").value;
+
     var data = {
-        "nombre": nombre,
-        "apellidos": apellidos,
+        "txtNombre": nombre,
+        "txtApellido": apellidos,
         "documento": documento,
-        "fechaNac":fechaNac,
+        "fechaNac": fechaNac,
         "direccion": direccion,
         "dep": dep,
         "prov": prov,
-        "dis":dis,
-        "email":email,
+        "dis": dis,
+        "email": email,
         "telefono": telefono,
         "sexo": sexo,
         "action": "Registro"
@@ -329,4 +329,114 @@ function RegistroPersonal(){
         url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
         type: 'post', //método de envio
     });
+}
+function muestraMdFoto() {
+    const exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget
+        const recipient = button.getAttribute('data-bs-whatever')
+        const modalTitle = exampleModal.querySelector('.modal-title')
+        const modalBodyInput = exampleModal.querySelector('.modal-body input')
+        modalTitle.textContent = `New message to ${recipient}`
+        modalBodyInput.value = recipient
+    })
+}
+function ListarPersonaTable(ur) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#tddataTablePersona');
+            res.innerHTML = '';
+            if (datos === "") {
+                alert("no existen datos");
+            } else {
+                for (let item of datos) {
+                    res.innerHTML += `
+                    <tr >
+                        <td scope="row">${item.Per_Id}</td>
+                        <td scope="row">${item.Per_ApePatMat + ', ' + item.Per_Nombre}</td>
+                        <td scope="row">${item.Per_Celular}</td>
+                        <td scope="row">${item.Per_Documento}</td>
+                        <td scope="row">
+                            <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
+                            <a href="/public/Personal/PerLisForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
+                            <a  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></a>
+                        </td>
+                    </tr>
+                    `;
+
+                }
+            }
+
+        }
+    }
+}
+function buscarPersona(ur) {
+    var dni = document.getElementById('txtbuscarPersonaDNI').value;
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur + "?action=buscar&consulta=" + dni, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        let res = document.querySelector('#tddataTablePersona');
+        res.innerHTML = '';
+        if (this.readyState == 4 && this.status == 200) {
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#tddataTablePersona');
+            res.innerHTML = '';
+            if (datos === "") {
+                alert("no encontrado");
+            } else {
+                for (let item of datos) {
+                    res.innerHTML += `
+                    <tr >
+                        <td scope="row">${item.Per_Id}</td>
+                        <td scope="row">${item.Per_ApePatMat + ', ' + item.Per_Nombre}</td>
+                        <td scope="row">${item.Per_Celular}</td>
+                        <td scope="row">${item.Per_Documento}</td>
+                        <td scope="row">
+                            <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
+                            <a href="/public/Personal/PerLisForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
+                            <a  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></a>
+                        </td>
+                    </tr>
+                    `;
+
+                }
+            }
+
+        }
+    }
+}
+function MuestraPersonalEditar(id) {
+    var data={
+        "action": 'extrae',
+        "id": id,
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+            //let datos = JSON.parse(json);
+            console.log(json);
+            document.getElementById("txtNombre").value=json[0]['Per_Nombre'];
+            document.getElementById("txtApellido").value=json[0]['Per_ApePatMat'];
+            document.getElementById("txtDir").value=json[0]['Per_Direccion'];
+            document.getElementById("idtxtEmail").value=json[0]['Per_Correo'];
+            document.getElementById("idTxtTel").value=json[0]['Per_Celular'];
+            $("#slcSexo > option[value="+json[0]['Per_Sexo']).attr("selected",true);
+            document.getElementById("slcDep").value=json[0]['Per_Departamento']
+            $("#slcDep > option[value="+json[0]['Per_Departamento']+"]").attr("selected",true);
+            $("#slcProv > option[value="+json[0]['Per_Provincia']+"]").attr("selected",true);
+            $("#slcDistrito > option[value="+json[0]['Per_Distrito']+"]").attr("selected",true);
+            // document.getSelection("slcSexo").setPosition=json[0]['Per_Sexo'];
+            // document.getSelection("slcDep").se=json[0]['Per_Sexo']
+        }
+    });
+
 }
