@@ -12,7 +12,11 @@ ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
     <center>
         <h1 class="h4">LISTA DE PERSONAL</h1>
     </center>
+    <input type="hidden" id="prueba" name="prueba" value="">
+                <script>
+                   
 
+                </script>
     <div class="container">
         <label for="">BUSCAR: </label>
         <div class="row justify-content-start">
@@ -90,11 +94,11 @@ ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
                                         </div>
                                     </div><br>
                                     <div class="row justify-content-center">
-                                        <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormHuella">
+                                        <img src="" alt=""  style="height: 50%; width:50% ;" id="imagenFormHuella">
                                     </div>
                                 </div>
                             </div>
-
+                            
                         </div><br>
                     </form>
                 </div>

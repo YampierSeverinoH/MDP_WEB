@@ -19,7 +19,7 @@ function ListarDepartamentos(ur) {
 
             for (let item of datos) {
                 res.innerHTML += `
-                <option value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
+                <option value='${item.id_ubigeo}'>${item.nombre_ubigeo}</option>`;
             }
         }
     }
@@ -323,23 +323,26 @@ function RegistroPersonal() {
         "sexo": sexo,
         "action": "Registro"
     };
-    console.log(data);
     $.ajax({
         data: data, //datos que se envian a traves de ajax
         url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
         type: 'post', //método de envio
+        success: function (json) {
+            alert("Registrado");
+        }
     });
 }
 function muestraMdFoto() {
     const exampleModal = document.getElementById('exampleModal')
-    exampleModal.addEventListener('show.bs.modal', event => {
-        const button = event.relatedTarget
+    const button = event.relatedTarget
         const recipient = button.getAttribute('data-bs-whatever')
         const modalTitle = exampleModal.querySelector('.modal-title')
         const modalBodyInput = exampleModal.querySelector('.modal-body input')
         modalTitle.textContent = `New message to ${recipient}`
         modalBodyInput.value = recipient
-    })
+    // exampleModal.addEventListener('show.bs.modal', event => {
+        
+    // })
 }
 function ListarPersonaTable(ur) {
     const xhttp = new XMLHttpRequest();
@@ -362,9 +365,11 @@ function ListarPersonaTable(ur) {
                         <td scope="row">${item.Per_Celular}</td>
                         <td scope="row">${item.Per_Documento}</td>
                         <td scope="row">
-                            <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
-                            <a href="/public/Personal/PerLisForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
-                            <a  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></a>
+                            
+                            <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}" ><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
+                            
+                            <a href="?id=${item.Per_Id}" onclick="DeletePersonaListar(${item.Per_Id});"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
+                            <a href="?id=${item.Per_Id}" onclick="ExtreaeDatosBtn(${item.Per_Id})" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></button>
                         </td>
                     </tr>
                     `;
@@ -374,6 +379,24 @@ function ListarPersonaTable(ur) {
 
         }
     }
+}
+function ExtreaeDatosBtn(bar){
+    document.getElementById("prueba").value=bar;
+    console.log(document.getElementById("prueba").value);
+}
+function DeletePersonaListar(bar){
+    var data = {
+        "id":bar,
+        "action": "Eliminar"
+    };
+    $.ajax({
+        data: data,
+        url: '/Model/WebService/ws_persona.php',
+        type: 'post',
+        success: function (json) {
+            alert("Eliminar");
+        }
+    });
 }
 function buscarPersona(ur) {
     var dni = document.getElementById('txtbuscarPersonaDNI').value;
@@ -412,31 +435,115 @@ function buscarPersona(ur) {
         }
     }
 }
+//NUEVA FUNCION PARA EDITAR PERSONA.,
+function ListarProvinciaUpd(id, id2) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', '/js/api_provincias.json', true);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+
+            let res = document.querySelector('#slcProv');
+            res.innerHTML = '';
+            for (let item of datos[id]) {
+                if (item.id_ubigeo == id2) {
+                    res.innerHTML += `
+                    <option selected value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
+                } else {
+                    res.innerHTML += `
+                    <option value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
+                }
+
+            }
+        }
+    }
+}
+function ListarDistritosUpd(id, id2) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', '/js/api_distritos.json', true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+
+            let res = document.querySelector('#slcDist');
+            res.innerHTML = '';
+            for (let item of datos[id]) {
+                if (item.id_ubigeo == id2) {
+                    res.innerHTML += `
+                    <option selected value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
+                }else{
+                    res.innerHTML += `
+                    <option value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
+                }
+               
+            }
+        }
+    }
+}
 function MuestraPersonalEditar(id) {
-    var data={
+    
+    var data = {
         "action": 'extrae',
         "id": id,
+    };
+    $.ajax({
+        data: data,
+        url: '/Model/WebService/ws_persona.php',
+        type: 'post',
+        success: function (json) {
+            document.getElementById("txtNombre").value = json[0]['Per_Nombre'];
+            document.getElementById("txtApellido").value = json[0]['Per_ApePatMat'];
+            document.getElementById("txtDir").value = json[0]['Per_Direccion'];
+            document.getElementById("idtxtEmail").value = json[0]['Per_Correo'];
+            document.getElementById("idTxtTel").value = json[0]['Per_Celular'];
+            $("#idOculto").attr("value", json[0]['Per_Id']);
+            //document.getElementById("idOculto").value = json[0]['Per_Id'];
+            $("#slcSexo > option[value='" + json[0]['Per_Sexo'] + "']").attr("selected", true);
+            $("#slcDep > option[value='" + json[0]['Per_Departamento'] + "']").attr("selected", true);
+            ListarProvinciaUpd(json[0]['Per_Departamento'], json[0]['Per_Provincia']);
+            ListarDistritosUpd(json[0]['Per_Provincia'], json[0]['Per_Distrito']);
+
+        }
+    });
+}
+function SavePersonalEditar(){
+    var data = {
+        "txtNombre": document.getElementById("txtNombre").value,
+        "txtApellido": document.getElementById("txtApellido").value,
+        "direccion": document.getElementById("txtDirper").value,
+        "dep": document.getElementById("slcDep").value,
+        "prov": document.getElementById("slcProv").value,
+        "dis": document.getElementById("slcDist").value,
+        "email": document.getElementById("txtEmaPer").value,
+        "telefono": document.getElementById("txtTelPer").value,
+        "id":document.getElementById("idOculto").value,
+        "action": "Actualizar"
     };
     $.ajax({
         data: data, //datos que se envian a traves de ajax
         url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
         type: 'post', //método de envio
         success: function (json) {
-            //let datos = JSON.parse(json);
-            console.log(json);
-            document.getElementById("txtNombre").value=json[0]['Per_Nombre'];
-            document.getElementById("txtApellido").value=json[0]['Per_ApePatMat'];
-            document.getElementById("txtDir").value=json[0]['Per_Direccion'];
-            document.getElementById("idtxtEmail").value=json[0]['Per_Correo'];
-            document.getElementById("idTxtTel").value=json[0]['Per_Celular'];
-            $("#slcSexo > option[value="+json[0]['Per_Sexo']).attr("selected",true);
-            document.getElementById("slcDep").value=json[0]['Per_Departamento']
-            $("#slcDep > option[value="+json[0]['Per_Departamento']+"]").attr("selected",true);
-            $("#slcProv > option[value="+json[0]['Per_Provincia']+"]").attr("selected",true);
-            $("#slcDistrito > option[value="+json[0]['Per_Distrito']+"]").attr("selected",true);
-            // document.getSelection("slcSexo").setPosition=json[0]['Per_Sexo'];
-            // document.getSelection("slcDep").se=json[0]['Per_Sexo']
+            alert("Registrado");
         }
     });
-
+}
+function DeletePersonalListar(){
+    var data = {
+        "id":document.getElementById("idOculto").value,
+        "action": "Actualizar"
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+            alert("Registrado");
+        }
+    });
 }

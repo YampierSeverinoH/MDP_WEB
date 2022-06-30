@@ -30,7 +30,7 @@ include("../menu.php");
                     <div class="col">
                         <div class="form-group">
                             <label for="">Apellidos: </label>
-                            <input type="text" name="apellido" id="txtApellido" class="form-control" placeholder="Apellidos" aria-describedby="helpId">
+                            <input type="text" name="apellido"  id="txtApellido" class="form-control" placeholder="Apellidos" aria-describedby="helpId">
                         </div>
                     </div>
                 </div>

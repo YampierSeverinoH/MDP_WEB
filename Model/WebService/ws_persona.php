@@ -45,19 +45,18 @@ if ($method == "POST") {
         $con->desconectar();
         sleep(2);
     }
-    if ($accion == "actualizar") {
-        echo "Ingreso a acrtualizaer";
-        $nombre = $_POST['nomArea'];
-        $estado = $_POST['estArea'];
-        $descripcion = $_POST['desArea'];
-        $idCargo = $_POST['idArea'];
-
-        $sql = "UPDATE tbcargo
+    if ($accion == "Actualizar") {
+        $sql="UPDATE tbpersona
         SET
-        Car_nombre = '" . $nombre . "',
-        Car_Estado = '" . $estado . "',
-        Car_Descripcion = '" . $descripcion . "'
-        WHERE Car_Id ='" . $idCargo . "';";
+        Per_Nombre = ${$_POST['txtNombre']},
+        Per_ApePatMat = ${$_POST['txtApellido']},
+        Per_Direccion =${$_POST['direccion']},
+        Per_Provincia = ${$_POST['prov']},
+        Per_Departamento = ${$_POST['dep']},
+        Per_Distrito = ${$_POST['dis']},
+        Per_Celular = ${$_POST['telefono']},
+        Per_Correo =${$_POST['email']}
+        WHERE Per_Id = ${$_POST['id']};";
         $res = $con->exec($sql);
         $con->desconectar();
         sleep(2);
@@ -68,6 +67,12 @@ if ($method == "POST") {
         $res = $con->findAll($sql);
         $con->desconectar();
         echo json_encode($res);
+    } 
+    if($accion=="Eliminar"){
+     $sql ="DELETE FROM tbpersona
+     WHERE  Per_Id = '".$_POST['id']."';";
+     $res = $con->exec($sql);
+     $con->desconectar();
     }
 }
 if ($method == "GET") {

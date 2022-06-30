@@ -17,13 +17,12 @@ if ($method == "POST") {
         $estado = $_POST['estArea'];
         $descripcion = $_POST['desArea'];
         $sql = "INSERT INTO tbarea
-        (Are_Id,
+        (
         Are_Estado,
         Are_Descripcion,
         Are_Nombre)
         VALUES
-        ('',
-        '" . $estado . "',
+        ('" . $estado . "',
         '" . $descripcion . "',
         '" . $nombre . "');";
         $res = $con->exec($sql);
