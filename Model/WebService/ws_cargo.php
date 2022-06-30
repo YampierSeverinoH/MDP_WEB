@@ -17,13 +17,11 @@ if ($method == "POST") {
         $estado = $_POST['estArea'];
         $descripcion = $_POST['desArea'];
         $sql = "INSERT INTO tbcargo
-        (Car_Id,
-        Car_Estado,
+        (Car_Estado,
         Car_Descripcion,
         Car_nombre)
         VALUES
-        ('',
-        '" . $estado . "',
+        ('" . $estado . "',
         '" . $descripcion . "',
         '" . $nombre . "');";
         $res = $con->exec($sql);

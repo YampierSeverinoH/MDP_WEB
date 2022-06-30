@@ -70,9 +70,9 @@ $nombre = $_SESSION['nombre'];
                                         </font>
                                     </a>
                                 </li>
-                                <li><a href="<?php echo PERSONAL . '/PerUpdForm.php'; ?>" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
+                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Actualizar</font>
+                                            <font style="vertical-align: inherit;">vacio por ahora</font>
                                         </font>
                                     </a>
                                 </li>
