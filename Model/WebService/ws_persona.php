@@ -42,6 +42,7 @@ if ($method == "POST") {
         '" . $_POST['fechaNac'] . "',
         '" . $_POST['documento'] . "');";
         $res = $con->exec($sql);
+        
         $con->desconectar();
         sleep(2);
     }

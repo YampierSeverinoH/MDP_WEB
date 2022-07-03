@@ -16,7 +16,7 @@ include("../cabecera.php");
                             <p id="LoginTitulo">Bienvenido al sistema</p>
                             <p id="LoginMensaje">Sitema de control de asistencia de la Municipalidad Distrital de Pucalá</p>
                             <div id="LoginForm">
-                                <form action="<?php echo WS; ?>/ws_usuario.php" method="post">
+                                <form action="<?php echo WS; ?>/ValidarLogin.php" method="post">
                                     <p>
                                         <?php
                                         if (isset($_GET['e'])) {

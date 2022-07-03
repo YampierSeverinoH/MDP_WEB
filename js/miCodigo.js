@@ -510,7 +510,7 @@ function MuestraPersonalEditar(id) {
 
         }
     });
-}
+}  
 function SavePersonalEditar(){
     var data = {
         "txtNombre": document.getElementById("txtNombre").value,
@@ -541,6 +541,28 @@ function DeletePersonalListar(){
     $.ajax({
         data: data, //datos que se envian a traves de ajax
         url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+            alert("Eliminado");
+        }
+    });
+}
+//---------------------------------
+
+//---------------------------------
+function CreateUsuarioFPer(){
+    let hoy=new Date();
+    var data = {
+       
+        "documento": document.getElementById("txtDocPer").value,
+        "email": document.getElementById("txtEmaPer").value,
+        "FechaCreacion":hoy.toLocaleDateString(),
+        "estado":'A',
+        "action": "Registro"
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
         type: 'post', //método de envio
         success: function (json) {
             alert("Registrado");

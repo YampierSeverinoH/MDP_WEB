@@ -1,52 +1,80 @@
 <?php
-
-//Api Rest
 header("Acces-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-include("../../public/php/const.php");
+//include("../../public/php/const.php");
 require_once('../bd.php');
-$consql = new Conexion("mysqli");
+$con = new Conexion("pdo");
+
 
 $method = $_SERVER['REQUEST_METHOD'];
-if ($method == "POST") {
 
-    if (isset($_POST['LoginUser']) && isset($_POST['LoginUser'])) {
-        $user = $_POST['LoginUser'];
-        $pass = $_POST['LoginPass'];
-        $sql = "SELECT Usu_Descripcion,
+if ($method == "POST") {
+    //recupoeracion de ajax
+    if(isset($_POST['action'])){
+        $accion = $_POST['action']; 
+    }else{
+        $accion =$_GET['action'];
+    }
+    if ($accion == "Registro") {
+
+        $sql = "INSERT INTO tbusuario
+        (Usu_Descripcion,
         Usu_ygsh,
         Usu_Estado,
-        Usu_idPersona,
-        Per_Nombre,
-        Per_ApePatMat,
-        Per_Foto FROM tbusuario u inner join tbpersona p on p.Per_Id=u.Usu_idPersona
-        where Usu_Descripcion='" . $user . "' and Usu_ygsh='" . $pass . "'";
-
-        $usuarios = $consql->antiq($sql);
-        $consql->desconectar();
-
-        if (!empty($usuarios)){
-			if($usuarios['Usu_Estado']=='A'){
-				session_start();
-				$_SESSION['nombre']=$usuarios['Per_Nombre'].", ".$usuarios['Per_ApePatMat'];
-				$_SESSION['idPersona']=$usuarios['Usu_idPersona'];
-                header ("Location:".CABECERA."/menu.php");
-			}else{
-				header ("Location:".PHP."/Login.php?e=2");
-			}
-		}else{
-			header ("Location:".PHP."/Login.php?e=1");
-		}
-
-       
-    } else {
-        session_start();
-		if (!isset($_SESSION['nombre'])){
-			session_destroy();
-			header ("Location:".PHP."/Login.php?e=3");
-		}
+        Usu_FecCrea,
+        Usu_FecFin,
+        Usu_idPersona)
+        VALUES
+        (,
+        ,
+        ,
+        ,
+        ,
+        );";
+        $res = $con->exec($sql);
+        $con->desconectar();
+        sleep(2);
     }
-
-
+    if ($accion == "Actualizar") {
+        $sql="";
+        $res = $con->exec($sql);
+        $con->desconectar();
+        sleep(2);
+    }
+    if($accion=="extrae"){
+        $Q=$_POST['id'];
+        $sql = "SELECT * FROM tbpersona WHERE Per_Id ='".$Q ."'";
+        $res = $con->findAll($sql);
+        $con->desconectar();
+        echo json_encode($res);
+    } 
+    if($accion=="Eliminar"){
+     $sql ="DELETE FROM tbpersona
+     WHERE  Per_Id = '".$_POST['id']."';";
+     $res = $con->exec($sql);
+     $con->desconectar();
+    }
+}
+if ($method == "GET") {
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+        if ($action == "buscar") {
+           if(isset($_GET['consulta'])){
+            $Q = $_GET['consulta'];
+            $sql = "SELECT * FROM tbusuario WHERE Per_Documento LIKE '%" . $Q . "%'";
+           }else{
+            $sql = "SELECT * FROM tbusuario";
+           }
+           
+            $res = $con->findAll($sql);
+            $con->desconectar();
+            echo json_encode($res);
+        }
+    } else {
+        $sql = "SELECT * FROM tbusuario";
+        $res = $con->findAll($sql);
+        $con->desconectar();
+        echo json_encode($res);
+    }
 }

@@ -117,7 +117,7 @@ include("../menu.php");
             <!-- REGISTRO DE CARGOS -->
             <div class="container">
                 <div class="ContForm">
-                    <h5>Asignacion de cargo</h5>
+                    <h5>Asignacion</h5>
                     <div class="row justify-content-start">
                         <!-- area -->
                         <div class="col">
@@ -150,41 +150,7 @@ include("../menu.php");
             </div><br>
             <!-- REGISTRO DE FOTO DE PERFIL Y DE HUELLAS -->
             
-            <div class="container">
-                <!-- imagenes a cargar -->
-                <div class="ContForm">
-                    <h5>Cargar imagenes</h5>
-                    <br>
-                    <div class="row justify-content-start">
-                        <!-- subir imagen de foto -->
-                        <div class="col">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">Foto de perfil</label><br>
-                                    <input type="file" class="form-control-file" onclick="PreVisualizarPerfil()" name="FileFormPerfil" id="FileFormPerfil" placeholder="" aria-describedby="fileHelpId">
-                                </div>
-                            </div><br>
-                            <div class="row justify-content-center">
-                                <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormPerfil">
-                            </div>
-                        </div>
-                        <!-- subir imagen de huella -->
-
-                        <div class="col">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">Huella digital</label><br>
-                                    <input type="file" class="form-control-file" onclick="PreVisualizarHuella()" name="" id="FileFormHuella" placeholder="" aria-describedby="fileHelpId">
-                                </div>
-                            </div><br>
-                            <div class="row justify-content-center">
-                                <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormHuella">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><br> 
+            
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">

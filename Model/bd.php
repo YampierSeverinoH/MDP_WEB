@@ -59,5 +59,10 @@ class Conexion {
          $this->stm->execute();
          return $this->stm->rowCount();        
     }
+    public function ejecutar($query){
+        $this->stm = $this->consql->query($query);
+        $this->rs= $this->stm->fetch_assoc();
+        return $this->rs;    
+   }
 
 }
