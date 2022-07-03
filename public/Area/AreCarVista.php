@@ -50,7 +50,7 @@ include("../menu.php");
                     <div class="col">
                         <center>
 
-                            <button name="btnSaveArea" id="btnSaveArea" class="btn btn-success" onclick="RegArea();Mensaje()">Guardar</button>
+                            <button name="btnSaveArea" id="btnSaveArea" class="btn btn-success" onclick="RegArea();corecto();">Guardar</button>
                             <button name="btnCleanArea" id="btnCleanArea" class="btn btn-primary">Cancelar</button>
                         </center>
                     </div>
@@ -93,7 +93,7 @@ include("../menu.php");
                     </div>
                     <div class="col">
                         <center>
-                            <button name="btnSaveCargo" id="btnSaveCargo" class="btn btn-success" onclick="RegCargo();Mensaje()">Guardar</button>
+                            <button name="btnSaveCargo" id="btnSaveCargo" class="btn btn-success" onclick="RegCargo();corecto();">Guardar</button>
                             <button name="btncleanCargo" id="btncleanCargo" class="btn btn-primary" type="">Cancelar</button>
                         </center>
                     </div>

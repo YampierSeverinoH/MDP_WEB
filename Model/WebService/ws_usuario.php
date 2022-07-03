@@ -18,23 +18,21 @@ if ($method == "POST") {
     }
     if ($accion == "Registro") {
 
-        $sql = "INSERT INTO tbusuario
-        (Usu_Descripcion,
+        $sqlUser = "INSERT INTO tbusuario
+        (
+        Usu_Descripcion,
         Usu_ygsh,
         Usu_Estado,
         Usu_FecCrea,
-        Usu_FecFin,
         Usu_idPersona)
         VALUES
-        (,
-        ,
-        ,
-        ,
-        ,
-        );";
-        $res = $con->exec($sql);
+        ('" . $_POST['email'] . "',
+        '" . $_POST['documento'] . "',
+        'A',
+        '" .date('Y-m-d')."',
+        (SELECT Per_Id FROM tbpersona WHERE Per_Documento='" . $_POST['documento'] . "'));";
+        $re = $con->exec($sqlUser);
         $con->desconectar();
-        sleep(2);
     }
     if ($accion == "Actualizar") {
         $sql="";

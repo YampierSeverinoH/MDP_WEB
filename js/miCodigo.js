@@ -115,11 +115,11 @@ function RegArea() {
     });
 }
 // //"warning", "error", "success" and "info".
-function Mensaje() {
+function corecto() {
     swal("REALIZADO", "Se Registro correctamente", "info");
 }
 
-function MRealizado() {
+function actualizado() {
     swal("Actualizado", "Se actualizo correctamente", "success");
 }
 //LISTAR AREAS
@@ -297,30 +297,19 @@ function UpdateCargo() {
 }
 //REGISTRO DEL PERSONAL
 function RegistroPersonal() {
-    var nombre = document.getElementById("txtNombre").value;
-    var apellidos = document.getElementById("txtApellido").value;
-    var documento = document.getElementById("txtDocPer").value;
-    var fechaNac = document.getElementById("dateFecNacPer").value;
-    var direccion = document.getElementById("txtDirper").value;
-    var dep = document.getElementById("slcDep").value;
-    var prov = document.getElementById("slcProv").value;
-    var dis = document.getElementById("slcDist").value;
-    var email = document.getElementById("txtEmaPer").value;
-    var telefono = document.getElementById("txtTelPer").value;
-    var sexo = document.getElementById("slcSexo").value;
 
     var data = {
-        "txtNombre": nombre,
-        "txtApellido": apellidos,
-        "documento": documento,
-        "fechaNac": fechaNac,
-        "direccion": direccion,
-        "dep": dep,
-        "prov": prov,
-        "dis": dis,
-        "email": email,
-        "telefono": telefono,
-        "sexo": sexo,
+        "txtNombre": document.getElementById("txtNombre").value,
+        "txtApellido": document.getElementById("txtApellido").value,
+        "documento":  document.getElementById("txtDocPer").value,
+        "fechaNac": document.getElementById("dateFecNacPer").value,
+        "direccion": document.getElementById("txtDirper").value,
+        "dep": document.getElementById("slcDep").value,
+        "prov": document.getElementById("slcProv").value,
+        "dis": document.getElementById("slcDist").value,
+        "email": document.getElementById("txtEmaPer").value,
+        "telefono": document.getElementById("txtTelPer").value,
+        "sexo": document.getElementById("slcSexo").value,
         "action": "Registro"
     };
     $.ajax({
@@ -365,9 +354,7 @@ function ListarPersonaTable(ur) {
                         <td scope="row">${item.Per_Celular}</td>
                         <td scope="row">${item.Per_Documento}</td>
                         <td scope="row">
-                            
                             <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}" ><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
-                            
                             <a href="?id=${item.Per_Id}" onclick="DeletePersonaListar(${item.Per_Id});"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
                             <a href="?id=${item.Per_Id}" onclick="ExtreaeDatosBtn(${item.Per_Id})" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></button>
                         </td>
@@ -422,9 +409,9 @@ function buscarPersona(ur) {
                         <td scope="row">${item.Per_Celular}</td>
                         <td scope="row">${item.Per_Documento}</td>
                         <td scope="row">
-                            <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
-                            <a href="/public/Personal/PerLisForm.php?id=${item.Per_Id}"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
-                            <a  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></a>
+                            <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}" ><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
+                            <a href="?id=${item.Per_Id}" onclick="DeletePersonaListar(${item.Per_Id});"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
+                            <a href="?id=${item.Per_Id}" onclick="ExtreaeDatosBtn(${item.Per_Id})" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></button>
                         </td>
                     </tr>
                     `;
@@ -556,8 +543,6 @@ function CreateUsuarioFPer(){
        
         "documento": document.getElementById("txtDocPer").value,
         "email": document.getElementById("txtEmaPer").value,
-        "FechaCreacion":hoy.toLocaleDateString(),
-        "estado":'A',
         "action": "Registro"
     };
     $.ajax({
@@ -565,7 +550,7 @@ function CreateUsuarioFPer(){
         url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
         type: 'post', //método de envio
         success: function (json) {
-            alert("Registrado");
+            corecto();
         }
     });
 }

@@ -56,7 +56,7 @@ if (isset($_GET['id'])) {
                     <div class="col">
                         <center>
 
-                            <a href="<?php echo AREA; ?>/AreListar.php" name="btnActualizarArea" id="btnActualizarArea" class="btn btn-success" onclick="UpdateArea();MRealizado()">Guardar</a>
+                            <a href="<?php echo AREA; ?>/AreListar.php" name="btnActualizarArea" id="btnActualizarArea" class="btn btn-success" onclick="UpdateArea();actualizado()">Guardar</a>
                             <a href="<?php echo AREA; ?>/AreListar.php" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Cancelar</a>
                         </center>
                     </div>
