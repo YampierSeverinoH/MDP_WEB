@@ -3,9 +3,7 @@ include("../menu.php");
 
 ?>
 <script>
-
-ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
-
+    ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
 </script>
 <div class="col-9" ">
    <div class=" ContForm">
@@ -13,10 +11,10 @@ ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
         <h1 class="h4">LISTA DE PERSONAL</h1>
     </center>
     <input type="hidden" id="prueba" name="prueba" value="">
-                <script>
-                   
+    <script>
 
-                </script>
+
+    </script>
     <div class="container">
         <label for="">BUSCAR: </label>
         <div class="row justify-content-start">
@@ -84,21 +82,8 @@ ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
                                         <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormPerfil">
                                     </div>
                                 </div>
-                                <!-- subir imagen de huella -->
-
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <label for="">Huella digital</label><br>
-                                            <input type="file" class="form-control-file" onclick="PreVisualizarHuella()" name="" id="FileFormHuella" placeholder="" aria-describedby="fileHelpId">
-                                        </div>
-                                    </div><br>
-                                    <div class="row justify-content-center">
-                                        <img src="" alt=""  style="height: 50%; width:50% ;" id="imagenFormHuella">
-                                    </div>
-                                </div>
                             </div>
-                            
+
                         </div><br>
                     </form>
                 </div>

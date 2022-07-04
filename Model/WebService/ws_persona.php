@@ -74,6 +74,10 @@ if ($method == "POST") {
      $res = $con->exec($sql);
      $con->desconectar();
     }
+    if($accion=="Eliminar"){
+    
+    
+    }
 }
 if ($method == "GET") {
     if (isset($_GET['action'])) {
