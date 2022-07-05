@@ -11,7 +11,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "POST") {
     $accion = $_POST['action'];
     if ($accion == "Cargar") {
-        $sql = "SELECT a.Acc_Descripcion, ra.RolAcc_Padre 
+        $sql = "SELECT a.Acc_nombre,a.Acc_Descripcion, ra.RolAcc_Padre 
         FROM tbrolusuario ru INNER JOIN tbrol r ON r.Rol_Id=ru.RolUsu_IdRol
         INNER JOIN tbrolacceso ra ON ra.RolAcc_IdRol=r.Rol_Id
         INNER JOIN tbacceso a ON a.Acc_Id=ra.RolAcc_IdAcceso

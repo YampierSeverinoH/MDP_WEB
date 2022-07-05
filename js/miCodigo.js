@@ -1,8 +1,6 @@
-// console.log("sss");
-function selecio() {
+var url="";
+var php="";
 
-    console.log(operation);
-}
 
 function ListarDepartamentos(ur) {
 
@@ -586,66 +584,69 @@ function CreateUsuarioFPer() {
 //      ACESOS
 //---------------------------------
 
-function ObtenerPermisosMenu() {
+function ObtenerPermisosMenu(id) {
     var data = {
 
-        "id": document.getElementById("idUser").value,
+        "id": id,
         "action": "Cargar"
     };
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('POST', '/js/api_distritos.json', true);
-    xhttp.send(data);
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            // console.log(this.responseText);
-            let datos = JSON.parse(this.responseText);
-            let asistencia = document.querySelector('#PadreA');
-            let Gpersonal = document.querySelector('#PadreGP');
-            let AyC = document.querySelector('#PadreAC');
-            let Rep = document.querySelector('#PadreR');
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_rol.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+
+            //let datos =;
+            var asistencia = document.querySelector('#PadreA');
+            var Gpersonal = document.querySelector('#PadreGP');
+            var AyC = document.querySelector('#PadreAC');
+            var Rep = document.querySelector('#PadreR');
 
             asistencia.innerHTML = '';
             Gpersonal.innerHTML = '';
             AyC.innerHTML = '';
             Rep.innerHTML = '';
-            for (let item of datos) {
+            for (let item of  json) {
                 if (item.RolAcc_Padre == "A") {
-                    res.innerHTML += `
+                    asistencia.innerHTML += `
                     <li>
-                        <a href="<?php echo PHP . '${item.Acc_Descripcion}'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                        <a href="${url+'/php'+item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Marcar </font>
+                                <font style="vertical-align: inherit;">${item.Acc_nombre} </font>
                             </font>
                         </a>
                     </li>
                     `;
                 }
                 if (item.RolAcc_Padre == "GP") {
-                    res.innerHTML += `
+                    Gpersonal.innerHTML += `
                     <li>
-                        <a href="<?php echo PERSONAL . '${item.Acc_Descripcion}'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                        <a href="${url+'/Personal'+item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Marcar </font>
+                                <font style="vertical-align: inherit;">${item.Acc_nombre}  </font>
                             </font>
                         </a>
                     </li>
                     `;
                 }
                 if (item.RolAcc_Padre == "AC") {
-                    res.innerHTML += `
+                    AyC.innerHTML += `
                     <li>
-                        <a href="<?php echo AREA . '${item.Acc_Descripcion}'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                        <a href="${url+'/Area'+item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Marcar </font>
+                                <font style="vertical-align: inherit;">${item.Acc_nombre}  </font>
                             </font>
                         </a>
                     </li>
                     `;
                 }
                 if (item.RolAcc_Padre == "R") {
-                    res.innerHTML += ``;
+                    Rep.innerHTML += ``;
                 }
             }
         }
-    }
+    });
 }
+//---------------------------------
+//      LISTAR ACCESOS
+//---------------------------------
