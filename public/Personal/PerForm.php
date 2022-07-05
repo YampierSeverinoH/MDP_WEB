@@ -140,16 +140,24 @@ include("../menu.php");
                         </div>
                         <div class="col">
                             <div class="form-group">
+                                <label for="">Rol:</label>
+                                <select class="form-control" name="" id="slcRoles">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
                                 <label for="">Fecha de inicio:</label>
                                 <input class="form-control" type="date" name="fechaInicio" id="">
                             </div>
                             <br>
                         </div>
+                       
                     </div>
                 </div>
             </div><br>
-            <!-- REGISTRO DE FOTO DE PERFIL Y DE HUELLAS -->
-            
             
             <!-- BOTON DE ENVIO -->
             <div class="container">

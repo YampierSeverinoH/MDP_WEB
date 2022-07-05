@@ -4,7 +4,7 @@ if (isset($_GET['id'])) {
     $idpersona = $_GET['id'];
 ?>
     <script>
-        ListarDepartamentos('/js/api_departamentos.json');
+        
         MuestraPersonalEditar('<?php echo $idpersona ?>');
         ListarAreasSelect('<?php echo WS . '/ws_area.php' ?>');
         ListarCargoSelect('<?php echo WS . '/ws_cargo.php' ?>');
@@ -149,45 +149,11 @@ if (isset($_GET['id'])) {
                 </div>
             </div><br>
             <!-- REGISTRO DE FOTO DE PERFIL Y DE HUELLAS -->
-            <div class="container">
-                <!-- imagenes a cargar -->
-                <div class="ContForm">
-                    <h5>Cargar imagenes</h5>
-                    <br>
-                    <div class="row justify-content-start">
-                        <!-- subir imagen de foto -->
-                        <div class="col">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">Foto de perfil</label><br>
-                                    <input type="file" class="form-control-file" onclick="PreVisualizarPerfil()" name="" id="FileFormPerfil" placeholder="" aria-describedby="fileHelpId">
-                                </div>
-                            </div><br>
-                            <div class="row justify-content-center">
-                                <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormPerfil">
-                            </div>
-                        </div>
-                        <!-- subir imagen de huella -->
-
-                        <div class="col">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">Huella digital</label><br>
-
-                                </div>
-                            </div><br>
-                            <div class="row justify-content-center">
-                                <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormHuella">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><br>
+            
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnActualizar" id="btnFormRegPer" class="btn btn-outline-primary" type="button" value="Actualziar" onclick="SavePersonalEditar()">
+                    <input name="btnActualizar" id="btnFormRegPer" class="btn btn-outline-primary" type="button" value="Actualziar" onclick="SavePersonalEditar(<?php echo $idpersona;?>)">
                 </div>
             </div>
 

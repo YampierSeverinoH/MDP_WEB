@@ -10,7 +10,7 @@ include("../menu.php");
     <center>
         <h1 class="h4">LISTA DE PERSONAL</h1>
     </center>
-    <input type="hidden" id="prueba" name="prueba" value="">
+
     <script>
 
 
@@ -63,17 +63,18 @@ include("../menu.php");
                     <h5 class="modal-title" id="exampleModalLabel">Cargar imagenes</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form action="/Model/WebService/ws_persona.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="prueba" name="prueba" value="">
+                    <div class="modal-body">
                         <div class="container">
                             <!-- imagenes a cargar -->
-
                             <br>
                             <div class="row justify-content-start">
                                 <!-- subir imagen de foto -->
                                 <div class="col">
                                     <div class="row">
                                         <div class="form-group">
+                                            <input type="hidden" name="action" id="action" value="CargaFoto">
                                             <label for="">Foto de perfil</label><br>
                                             <input type="file" class="form-control-file" onclick="PreVisualizarPerfil()" name="FileFormPerfil" id="FileFormPerfil" placeholder="" aria-describedby="fileHelpId">
                                         </div>
@@ -83,14 +84,13 @@ include("../menu.php");
                                     </div>
                                 </div>
                             </div>
-
                         </div><br>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

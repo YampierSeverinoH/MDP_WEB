@@ -6,11 +6,13 @@ include("cabecera.php");
 
 
 session_start();
-
+$foto = $_SESSION['foto'];
 $nombre = $_SESSION['nombre'];
-
+$iduser=$_SESSION['idUsuario'];
 ?>
-
+<script>
+    //llamar a los permisos
+</script>
 
 <!DOCTYPE html>
 
@@ -18,13 +20,13 @@ $nombre = $_SESSION['nombre'];
 
     <div class="flex-shrink-0 p-3 bg-white ">
         <div class="container">
-
+            <input type="hidden" name="idUser" id="idUser" value="<?php echo $iduser; ?>">
             <div class="row justify-content-between">
                 <div class="col-3">
                     <div class="" id="FondoMenu">
                         <center>
                             <div class="bi pe-none me-0" width="30" height="24">
-                                <img src="<?php echo IMAGENES; ?>/logo4.jpg" alt="Munici" class="" height="100px">
+                                <img src="<?php echo PERFIL . $foto; ?>" alt="Munici" class="" height="100px">
                             </div>
                             <span class="fs-5 fw-semibold">
                                 <font style="vertical-align: inherit;">
@@ -40,16 +42,10 @@ $nombre = $_SESSION['nombre'];
                             </font>
                         </button></br>
                         <div class="collapse" id="Marcarciones">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small  ">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="PadreA">
                                 <li><a href="<?php echo PHP . '/MarAsistencia.php'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
                                             <font style="vertical-align: inherit;">Marcar </font>
-                                        </font>
-                                    </a>
-                                </li>
-                                <li><a href="" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Visualizar</font>
                                         </font>
                                     </a>
                                 </li>
@@ -63,28 +59,16 @@ $nombre = $_SESSION['nombre'];
                             </font>
                         </button></br>
                         <div class="collapse" id="dashboard-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small  ">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small  " id="PadreGP">
                                 <li><a href="<?php echo PERSONAL . '/PerForm.php'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
                                             <font style="vertical-align: inherit;">Registrar </font>
                                         </font>
                                     </a>
                                 </li>
-                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">vacio por ahora</font>
-                                        </font>
-                                    </a>
-                                </li>
                                 <li><a href="<?php echo PERSONAL . '/PerLisForm.php'; ?>" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
                                             <font style="vertical-align: inherit;">Listar Personal</font>
-                                        </font>
-                                    </a>
-                                </li>
-                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Visualizar</font>
                                         </font>
                                     </a>
                                 </li>
@@ -98,7 +82,7 @@ $nombre = $_SESSION['nombre'];
                             </font>
                         </button></br>
                         <div class=" collapse" id="PerLivMenu">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small  ">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small  " id="PadreAC">
                                 <li><a href="<?php echo AREA; ?>/AreCarVista.php" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
                                             <font style="vertical-align: inherit;">Registro </font>
@@ -127,28 +111,10 @@ $nombre = $_SESSION['nombre'];
                             </font>
                         </button></br>
                         <div class=" collapse" id="ReportesMenu">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small  ">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="PadreR">
                                 <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
                                         <font style="vertical-align: inherit;">
                                             <font style="vertical-align: inherit;">Personal </font>
-                                        </font>
-                                    </a>
-                                </li>
-                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Actualizar</font>
-                                        </font>
-                                    </a>
-                                </li>
-                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Administrar</font>
-                                        </font>
-                                    </a>
-                                </li>
-                                <li><a href="#" class="espacioado  link-dark d-inline-flex text-decoration-none rounded">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Visualizar</font>
                                         </font>
                                     </a>
                                 </li>

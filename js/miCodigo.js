@@ -301,7 +301,7 @@ function RegistroPersonal() {
     var data = {
         "txtNombre": document.getElementById("txtNombre").value,
         "txtApellido": document.getElementById("txtApellido").value,
-        "documento":  document.getElementById("txtDocPer").value,
+        "documento": document.getElementById("txtDocPer").value,
         "fechaNac": document.getElementById("dateFecNacPer").value,
         "direccion": document.getElementById("txtDirper").value,
         "dep": document.getElementById("slcDep").value,
@@ -324,13 +324,13 @@ function RegistroPersonal() {
 function muestraMdFoto() {
     const exampleModal = document.getElementById('exampleModal')
     const button = event.relatedTarget
-        const recipient = button.getAttribute('data-bs-whatever')
-        const modalTitle = exampleModal.querySelector('.modal-title')
-        const modalBodyInput = exampleModal.querySelector('.modal-body input')
-        modalTitle.textContent = `New message to ${recipient}`
-        modalBodyInput.value = recipient
+    const recipient = button.getAttribute('data-bs-whatever')
+    const modalTitle = exampleModal.querySelector('.modal-title')
+    const modalBodyInput = exampleModal.querySelector('.modal-body input')
+    modalTitle.textContent = `New message to ${recipient}`
+    modalBodyInput.value = recipient
     // exampleModal.addEventListener('show.bs.modal', event => {
-        
+
     // })
 }
 function ListarPersonaTable(ur) {
@@ -367,13 +367,13 @@ function ListarPersonaTable(ur) {
         }
     }
 }
-function ExtreaeDatosBtn(bar){
-    document.getElementById("prueba").value=bar;
+function ExtreaeDatosBtn(bar) {
+    document.getElementById("prueba").value = bar;
     console.log(document.getElementById("prueba").value);
 }
-function DeletePersonaListar(bar){
+function DeletePersonaListar(bar) {
     var data = {
-        "id":bar,
+        "id": bar,
         "action": "Eliminar"
     };
     $.ajax({
@@ -423,6 +423,33 @@ function buscarPersona(ur) {
     }
 }
 //NUEVA FUNCION PARA EDITAR PERSONA.,
+
+function ListarDepartamentos(id) {
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', '/js/api_departamentos.json', true);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#slcDep');
+            res.innerHTML = '';
+
+            for (let item of datos) {
+                if (item.id_ubigeo == id) {
+                    res.innerHTML += `
+                    <option selected value='${item.id_ubigeo}'>${item.nombre_ubigeo}</option>`;
+                } else {
+                    res.innerHTML += `
+                    <option value='${item.id_ubigeo}'>${item.nombre_ubigeo}</option>`;
+                }
+
+            }
+        }
+    }
+}
 function ListarProvinciaUpd(id, id2) {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', '/js/api_provincias.json', true);
@@ -463,17 +490,17 @@ function ListarDistritosUpd(id, id2) {
                 if (item.id_ubigeo == id2) {
                     res.innerHTML += `
                     <option selected value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
-                }else{
+                } else {
                     res.innerHTML += `
                     <option value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
                 }
-               
+
             }
         }
     }
 }
 function MuestraPersonalEditar(id) {
-    
+
     var data = {
         "action": 'extrae',
         "id": id,
@@ -491,24 +518,25 @@ function MuestraPersonalEditar(id) {
             $("#idOculto").attr("value", json[0]['Per_Id']);
             //document.getElementById("idOculto").value = json[0]['Per_Id'];
             $("#slcSexo > option[value='" + json[0]['Per_Sexo'] + "']").attr("selected", true);
-            $("#slcDep > option[value='" + json[0]['Per_Departamento'] + "']").attr("selected", true);
+
+            ListarDepartamentos(json[0]['Per_Departamento']);
             ListarProvinciaUpd(json[0]['Per_Departamento'], json[0]['Per_Provincia']);
             ListarDistritosUpd(json[0]['Per_Provincia'], json[0]['Per_Distrito']);
 
         }
     });
-}  
-function SavePersonalEditar(){
+}
+function SavePersonalEditar(id) {
     var data = {
         "txtNombre": document.getElementById("txtNombre").value,
         "txtApellido": document.getElementById("txtApellido").value,
-        "direccion": document.getElementById("txtDirper").value,
+        "direccion": document.getElementById("txtDir").value,
         "dep": document.getElementById("slcDep").value,
         "prov": document.getElementById("slcProv").value,
         "dis": document.getElementById("slcDist").value,
-        "email": document.getElementById("txtEmaPer").value,
-        "telefono": document.getElementById("txtTelPer").value,
-        "id":document.getElementById("idOculto").value,
+        "email": document.getElementById("idtxtEmail").value,
+        "telefono": document.getElementById("idTxtTel").value,
+        "id": id,
         "action": "Actualizar"
     };
     $.ajax({
@@ -520,9 +548,9 @@ function SavePersonalEditar(){
         }
     });
 }
-function DeletePersonalListar(){
+function DeletePersonalListar() {
     var data = {
-        "id":document.getElementById("idOculto").value,
+        "id": document.getElementById("idOculto").value,
         "action": "Actualizar"
     };
     $.ajax({
@@ -537,10 +565,10 @@ function DeletePersonalListar(){
 //---------------------------------
 
 //---------------------------------
-function CreateUsuarioFPer(){
-    let hoy=new Date();
+function CreateUsuarioFPer() {
+
     var data = {
-       
+
         "documento": document.getElementById("txtDocPer").value,
         "email": document.getElementById("txtEmaPer").value,
         "action": "Registro"
@@ -553,4 +581,71 @@ function CreateUsuarioFPer(){
             corecto();
         }
     });
+}
+//---------------------------------
+//      ACESOS
+//---------------------------------
+
+function ObtenerPermisosMenu() {
+    var data = {
+
+        "id": document.getElementById("idUser").value,
+        "action": "Cargar"
+    };
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/js/api_distritos.json', true);
+    xhttp.send(data);
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let asistencia = document.querySelector('#PadreA');
+            let Gpersonal = document.querySelector('#PadreGP');
+            let AyC = document.querySelector('#PadreAC');
+            let Rep = document.querySelector('#PadreR');
+
+            asistencia.innerHTML = '';
+            Gpersonal.innerHTML = '';
+            AyC.innerHTML = '';
+            Rep.innerHTML = '';
+            for (let item of datos) {
+                if (item.RolAcc_Padre == "A") {
+                    res.innerHTML += `
+                    <li>
+                        <a href="<?php echo PHP . '${item.Acc_Descripcion}'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Marcar </font>
+                            </font>
+                        </a>
+                    </li>
+                    `;
+                }
+                if (item.RolAcc_Padre == "GP") {
+                    res.innerHTML += `
+                    <li>
+                        <a href="<?php echo PERSONAL . '${item.Acc_Descripcion}'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Marcar </font>
+                            </font>
+                        </a>
+                    </li>
+                    `;
+                }
+                if (item.RolAcc_Padre == "AC") {
+                    res.innerHTML += `
+                    <li>
+                        <a href="<?php echo AREA . '${item.Acc_Descripcion}'; ?>" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Marcar </font>
+                            </font>
+                        </a>
+                    </li>
+                    `;
+                }
+                if (item.RolAcc_Padre == "R") {
+                    res.innerHTML += ``;
+                }
+            }
+        }
+    }
 }

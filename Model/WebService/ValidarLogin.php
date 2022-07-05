@@ -17,6 +17,7 @@ if ($method == "POST") {
         $sql = "SELECT Usu_Descripcion,
         Usu_ygsh,
         Usu_Estado,
+        Usu_Id,
         Usu_idPersona,
         Per_Nombre,
         Per_ApePatMat,
@@ -31,6 +32,8 @@ if ($method == "POST") {
 				session_start();
 				$_SESSION['nombre']=$usuarios['Per_Nombre'].", ".$usuarios['Per_ApePatMat'];
 				$_SESSION['idPersona']=$usuarios['Usu_idPersona'];
+                $_SESSION['idUsuario']=$usuarios['Usu_Id'];
+                $_SESSION['foto']=$usuarios['Per_Foto'];
                 header ("Location:".CABECERA."/menu.php");
 			}else{
 				header ("Location:".PHP."/Login.php?e=2");
