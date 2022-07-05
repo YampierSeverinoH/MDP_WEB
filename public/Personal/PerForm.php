@@ -15,6 +15,7 @@ include("../menu.php");
             ListarDepartamentos('<?php echo JS . '/api_departamentos.json' ?>');
             ListarAreasSelect('<?php echo WS . '/ws_area.php' ?>');
             ListarCargoSelect('<?php echo WS . '/ws_cargo.php' ?>');
+            listarAccesosFromPer('<?php echo WS . '/ws_rol.php' ?>')
 
         </script>
             <h5>Datos Personales</h5>

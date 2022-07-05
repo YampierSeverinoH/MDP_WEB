@@ -28,6 +28,9 @@ if ($method == "GET") {
     if (isset($_POST['action'])) {
         //
     } else {
-        //
+        $sql = "SELECT * FROM tbrol";
+        $res = $con->findAll($sql);
+        $con->desconectar();
+        echo json_encode($res);
     }
 }

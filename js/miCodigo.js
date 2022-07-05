@@ -319,6 +319,28 @@ function RegistroPersonal() {
         }
     });
 }
+//---------------------------------
+//      Registro de asignacion
+//---------------------------------
+function RegistroAsignacion(){
+    var data = {
+
+        "documento": document.getElementById("txtDocPer").value,
+        "email": document.getElementById("txtEmaPer").value,
+        "action": "Registro"
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+            corecto();
+        }
+    });   
+}
+
+
+
 function muestraMdFoto() {
     const exampleModal = document.getElementById('exampleModal')
     const button = event.relatedTarget
@@ -326,10 +348,7 @@ function muestraMdFoto() {
     const modalTitle = exampleModal.querySelector('.modal-title')
     const modalBodyInput = exampleModal.querySelector('.modal-body input')
     modalTitle.textContent = `New message to ${recipient}`
-    modalBodyInput.value = recipient
-    // exampleModal.addEventListener('show.bs.modal', event => {
-
-    // })
+    modalBodyInput.value = recipient;
 }
 function ListarPersonaTable(ur) {
     const xhttp = new XMLHttpRequest();
@@ -561,7 +580,7 @@ function DeletePersonalListar() {
     });
 }
 //---------------------------------
-
+//CREACION DE SUSUARIOS AL REGISTRAR UNA PERSONA 
 //---------------------------------
 function CreateUsuarioFPer() {
 
@@ -650,3 +669,25 @@ function ObtenerPermisosMenu(id) {
 //---------------------------------
 //      LISTAR ACCESOS
 //---------------------------------
+function listarAccesosFromPer(ur){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#slcRoles');
+            res.innerHTML = '';
+            if (datos === "") {
+                alert("no existen datos");
+            } else {
+                for (let item of datos) {
+                    res.innerHTML += `<option value="${item.Rol_Id}">${item.Rol_Descripcion}</option>`;
+
+                }
+            }
+
+        }
+    }
+}
