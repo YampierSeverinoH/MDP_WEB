@@ -112,16 +112,6 @@ function RegArea() {
         type: 'post', //método de envio
     });
 }
-// //"warning", "error", "success" and "info".
-function corecto() {
-    swal("REALIZADO", "Se Registro correctamente", "info");
-    //windows.location.href('/public/Personal/PerLisForm.php');
-    
-}
-
-function actualizado() {
-    swal("Actualizado", "Se actualizo correctamente", "success");
-}
 //LISTAR AREAS
 function ListarAreas(ur) {
 
@@ -319,19 +309,24 @@ function RegistroPersonal() {
         type: 'post',
         success: function (json) {
             if (json == "Error") {
-                swal(json, "No se registro correctamente");
+                swal(json, "No se registro correctamente",'error');
+                console.error("no se llenaron los campos correctamente");
             } else {
-                corecto()
-                location().href('/public/Personal/PerLisForm.php');
+                CreateUsuarioFPer();
+                AsignaiconAC();
+                AsignaiconRoles();
+                //location().href('/public/Personal/PerLisForm.php');
             }
 
         }
     });
 }
+
 //---------------------------------
-//      Registro de usuarios
+//CREACION DE SUSUARIOS AL REGISTRAR UNA PERSONA 
 //---------------------------------
-function RegistroAsignacion() {
+function CreateUsuarioFPer() {
+
     var data = {
 
         "documento": document.getElementById("txtDocPer").value,
@@ -343,13 +338,49 @@ function RegistroAsignacion() {
         url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
         type: 'post', //método de envio
         success: function (json) {
-            corecto();
         }
     });
 }
+//---------------------------------
+//      ASIGNACION DE FUCNIONES 
+//---------------------------------
+function AsignaiconAC(){
+    var data = {
 
+        "Area": document.getElementById("slcArea").value,
+        "Cargo": document.getElementById("slcCargo").value,
+        "fecha": document.getElementById("FechaInicio").value,
+        "documento": document.getElementById("txtDocPer").value,
+        "action": "RegistroAsignacion"
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+        }
+    });
+}
+//---------------------------------
+//      ASIGNACION DE Roles 
+//---------------------------------
+function AsignaiconRoles(){
+    var data = {
 
-
+        "rol":document.getElementById("slcRoles").value,
+        "fecha": document.getElementById("FechaInicio").value,
+        "documento": document.getElementById("txtDocPer").value,
+        "action": "Registro"
+    };
+    $.ajax({
+        data: data, //datos que se envian a traves de ajax
+        url: '/Model/WebService/ws_rol.php', //archivo que recibe la peticion
+        type: 'post', //método de envio
+        success: function (json) {
+            console.log("acabo");
+        }
+    });
+}
 function muestraMdFoto() {
     const exampleModal = document.getElementById('exampleModal')
     const button = event.relatedTarget
@@ -602,26 +633,7 @@ function DeletePersonalListar() {
         }
     });
 }
-//---------------------------------
-//CREACION DE SUSUARIOS AL REGISTRAR UNA PERSONA 
-//---------------------------------
-function CreateUsuarioFPer() {
 
-    var data = {
-
-        "documento": document.getElementById("txtDocPer").value,
-        "email": document.getElementById("txtEmaPer").value,
-        "action": "Registro"
-    };
-    $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
-        success: function (json) {
-            corecto();
-        }
-    });
-}
 //---------------------------------
 //      ACESOS
 //---------------------------------
@@ -683,6 +695,9 @@ function ObtenerPermisosMenu(id) {
                     `;
                 }
                 if (item.RolAcc_Padre == "R") {
+                    Rep.innerHTML += ``;
+                }
+                if (item.RolAcc_Padre == "C") {
                     Rep.innerHTML += ``;
                 }
             }

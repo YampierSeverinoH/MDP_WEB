@@ -49,7 +49,6 @@ if ($method == "POST") {
        }else{
         echo json_encode("Error");
        }
-        sleep(2);
     }
     if ($accion == "Actualizar") {
         $sql = "UPDATE tbpersona
@@ -66,7 +65,6 @@ if ($method == "POST") {
         $res = $con->exec($sql);
         $con->desconectar();
         echo json_encode($res);
-        sleep(2);
     }
     if ($accion == "extrae") {
         $Q = $_POST['id'];

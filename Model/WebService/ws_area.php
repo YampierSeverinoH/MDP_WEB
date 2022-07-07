@@ -27,7 +27,6 @@ if ($method == "POST") {
         '" . $nombre . "');";
         $res = $con->exec($sql);
         $con->desconectar();
-        sleep(2);
     }
     if ($accion == "actualizar") {
         echo "Ingreso a acrtualizaer";
@@ -44,7 +43,6 @@ if ($method == "POST") {
         WHERE Are_Id ='".$idArea."';";
         $res = $con->exec($sql);
         $con->desconectar();
-        sleep(1);
     }
 }
 if ($method == "GET") {

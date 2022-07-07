@@ -151,7 +151,7 @@ include("../menu.php");
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Fecha de inicio:</label>
-                                <input class="form-control" type="date" name="fechaInicio" id="">
+                                <input class="form-control" type="date" name="fechaInicio" id="FechaInicio">
                             </div>
                             <br>
                         </div>
@@ -163,7 +163,7 @@ include("../menu.php");
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="button" onclick="RegistroPersonal();CreateUsuarioFPer();" value="Guardar">
+                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="button" onclick="RegistroPersonal();" value="Guardar">
                 </div>
             </div>
 
