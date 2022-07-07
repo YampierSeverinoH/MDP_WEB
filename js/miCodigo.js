@@ -372,7 +372,7 @@ function ListarPersonaTable(ur) {
                         <td scope="row">${item.Per_Documento}</td>
                         <td scope="row">
                             <a href="/public/Personal/PerUpdForm.php?id=${item.Per_Id}" ><img class="img-fluid" src="/public/img/pencil.png" alt=""></a>
-                            <a href="?id=${item.Per_Id}" onclick="DeletePersonaListar(${item.Per_Id});"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
+                            <a href="?id=${item.Per_Id}" onclick="DeletePersonaListar(${item.Per_Id});InhabilitarUser(${item.Per_Id})"><img class="img-fluid" src="/public/img/trash.png" alt=""></a>
                             <a href="?id=${item.Per_Id}" onclick="ExtreaeDatosBtn(${item.Per_Id})" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  data-bs-whatever="@mdo"><img class="img-fluid" src="/public/img/upload.png" style="height: 32px;" alt="Cargar imagen"></button>
                         </td>
                     </tr>
@@ -387,6 +387,21 @@ function ListarPersonaTable(ur) {
 function ExtreaeDatosBtn(bar) {
     document.getElementById("prueba").value = bar;
     console.log(document.getElementById("prueba").value);
+}
+function InhabilitarUser(id){
+    var data = {
+        "id": id,
+        "action": "Inhabilitar"
+    };
+    $.ajax({
+        data: data,
+        url: '/Model/WebService/ws_usuario.php',
+        type: 'post',
+        success: function (json) {
+            alert("Eliminar");
+        }
+    });
+   
 }
 function DeletePersonaListar(bar) {
     var data = {

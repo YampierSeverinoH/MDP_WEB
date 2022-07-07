@@ -19,8 +19,7 @@ if ($method == "POST") {
     if ($accion == "Registro") {
 
         $sqlUser = "INSERT INTO tbusuario
-        (
-        Usu_Descripcion,
+        (Usu_Descripcion,
         Usu_ygsh,
         Usu_Estado,
         Usu_FecCrea,
@@ -34,24 +33,14 @@ if ($method == "POST") {
         $re = $con->exec($sqlUser);
         $con->desconectar();
     }
-    if ($accion == "Actualizar") {
-        $sql="";
+    if ($accion == "Inhabilitar") {
+        $sql="UPDATE tbusuario
+        SET
+        Usu_Estado = 'I'
+        WHERE Usu_idPersona = '" . $_POST['id'] . "'; ";
         $res = $con->exec($sql);
         $con->desconectar();
         sleep(2);
-    }
-    if($accion=="extrae"){
-        $Q=$_POST['id'];
-        $sql = "SELECT * FROM tbpersona WHERE Per_Id ='".$Q ."'";
-        $res = $con->findAll($sql);
-        $con->desconectar();
-        echo json_encode($res);
-    } 
-    if($accion=="Eliminar"){
-     $sql ="DELETE FROM tbpersona
-     WHERE  Per_Id = '".$_POST['id']."';";
-     $res = $con->exec($sql);
-     $con->desconectar();
     }
 }
 if ($method == "GET") {
