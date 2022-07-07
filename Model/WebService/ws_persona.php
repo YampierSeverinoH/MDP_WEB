@@ -17,6 +17,8 @@ if ($method == "POST") {
         $accion = $_GET['action'];
     }
     if ($accion == "Registro") {
+
+       if(isset($_POST['txtNombre']) && !empty($_POST['txtNombre'])){
         $sql = "INSERT INTO tbpersona
         (Per_Nombre,
         Per_ApePatMat,
@@ -43,22 +45,27 @@ if ($method == "POST") {
         '" . $_POST['documento'] . "');";
         $res = $con->exec($sql);
         $con->desconectar();
+        echo json_encode($res);
+       }else{
+        echo json_encode("Error");
+       }
         sleep(2);
     }
     if ($accion == "Actualizar") {
         $sql = "UPDATE tbpersona
         SET
-        Per_Nombre = '" . $_POST['txtNombre']."',
-        Per_ApePatMat = '" . $_POST['txtApellido']."',
-        Per_Direccion ='" . $_POST['direccion']."',
-        Per_Provincia = '" . $_POST['prov']."',
-        Per_Departamento = '" . $_POST['dep']."',
-        Per_Distrito = '" . $_POST['dis']."',
-        Per_Celular ='" . $_POST['telefono']."',
-        Per_Correo ='" . $_POST['email']."'
-        WHERE Per_Id ='".$_POST['id']."';";
+        Per_Nombre = '" . $_POST['txtNombre'] . "',
+        Per_ApePatMat = '" . $_POST['txtApellido'] . "',
+        Per_Direccion ='" . $_POST['direccion'] . "',
+        Per_Provincia = '" . $_POST['prov'] . "',
+        Per_Departamento = '" . $_POST['dep'] . "',
+        Per_Distrito = '" . $_POST['dis'] . "',
+        Per_Celular ='" . $_POST['telefono'] . "',
+        Per_Correo ='" . $_POST['email'] . "'
+        WHERE Per_Id ='" . $_POST['id'] . "';";
         $res = $con->exec($sql);
         $con->desconectar();
+        echo json_encode($res);
         sleep(2);
     }
     if ($accion == "extrae") {
@@ -81,11 +88,11 @@ if ($method == "POST") {
             move_uploaded_file($_FILES['FileFormPerfil']['tmp_name'], "fotos/" . $nombre_archivo); //muevo el archivo ubicacion final
             $sql = "UPDATE tbpersona
             SET
-            Per_Foto = '".$nombre_archivo."'
-            WHERE  Per_Id = '".$_POST['prueba']."';";
-                $res = $con->exec($sql);
-                $con->desconectar();
-                header("Location: /public/Personal/PerLisForm.php");
+            Per_Foto = '" . $nombre_archivo . "'
+            WHERE  Per_Id = '" . $_POST['prueba'] . "';";
+            $res = $con->exec($sql);
+            $con->desconectar();
+            header("Location: /public/Personal/PerLisForm.php");
         } else {
             echo "no cargo la foto";
         }

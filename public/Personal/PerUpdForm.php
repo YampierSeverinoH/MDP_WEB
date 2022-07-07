@@ -153,7 +153,7 @@ if (isset($_GET['id'])) {
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnActualizar" id="btnFormRegPer" class="btn btn-outline-primary" type="button" value="Actualziar" onclick="SavePersonalEditar(<?php echo $idpersona;?>)">
+                    <input name="btnActualizar" id="btnFormRegPer" class="btn btn-outline-primary" type="button" value="Actualziar" onclick="SavePersonalEditar(<?php echo $idpersona;?>);corecto();">
                 </div>
             </div>
 

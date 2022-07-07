@@ -1,5 +1,5 @@
-var url="";
-var php="";
+var url = "";
+var php = "";
 
 
 function ListarDepartamentos(ur) {
@@ -115,6 +115,8 @@ function RegArea() {
 // //"warning", "error", "success" and "info".
 function corecto() {
     swal("REALIZADO", "Se Registro correctamente", "info");
+    //windows.location.href('/public/Personal/PerLisForm.php');
+    
 }
 
 function actualizado() {
@@ -310,19 +312,26 @@ function RegistroPersonal() {
         "sexo": document.getElementById("slcSexo").value,
         "action": "Registro"
     };
+    
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data,
+        url: '/Model/WebService/ws_persona.php',
+        type: 'post',
         success: function (json) {
-            alert("Registrado");
+            if (json == "Error") {
+                swal(json, "No se registro correctamente");
+            } else {
+                corecto()
+                location().href('/public/Personal/PerLisForm.php');
+            }
+
         }
     });
 }
 //---------------------------------
-//      Registro de asignacion
+//      Registro de usuarios
 //---------------------------------
-function RegistroAsignacion(){
+function RegistroAsignacion() {
     var data = {
 
         "documento": document.getElementById("txtDocPer").value,
@@ -336,7 +345,7 @@ function RegistroAsignacion(){
         success: function (json) {
             corecto();
         }
-    });   
+    });
 }
 
 
@@ -388,7 +397,7 @@ function ExtreaeDatosBtn(bar) {
     document.getElementById("prueba").value = bar;
     console.log(document.getElementById("prueba").value);
 }
-function InhabilitarUser(id){
+function InhabilitarUser(id) {
     var data = {
         "id": id,
         "action": "Inhabilitar"
@@ -401,7 +410,7 @@ function InhabilitarUser(id){
             alert("Eliminar");
         }
     });
-   
+
 }
 function DeletePersonaListar(bar) {
     var data = {
@@ -532,7 +541,6 @@ function ListarDistritosUpd(id, id2) {
     }
 }
 function MuestraPersonalEditar(id) {
-
     var data = {
         "action": 'extrae',
         "id": id,
@@ -640,11 +648,11 @@ function ObtenerPermisosMenu(id) {
             Gpersonal.innerHTML = '';
             AyC.innerHTML = '';
             Rep.innerHTML = '';
-            for (let item of  json) {
+            for (let item of json) {
                 if (item.RolAcc_Padre == "A") {
                     asistencia.innerHTML += `
                     <li>
-                        <a href="${url+'/php'+item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                        <a href="${url + '/php' + item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">${item.Acc_nombre} </font>
                             </font>
@@ -655,7 +663,7 @@ function ObtenerPermisosMenu(id) {
                 if (item.RolAcc_Padre == "GP") {
                     Gpersonal.innerHTML += `
                     <li>
-                        <a href="${url+'/Personal'+item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                        <a href="${url + '/Personal' + item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">${item.Acc_nombre}  </font>
                             </font>
@@ -666,7 +674,7 @@ function ObtenerPermisosMenu(id) {
                 if (item.RolAcc_Padre == "AC") {
                     AyC.innerHTML += `
                     <li>
-                        <a href="${url+'/Area'+item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
+                        <a href="${url + '/Area' + item.Acc_Descripcion}" class="espacioado link-dark d-inline-flex text-decoration-none rounded">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">${item.Acc_nombre}  </font>
                             </font>
@@ -684,7 +692,7 @@ function ObtenerPermisosMenu(id) {
 //---------------------------------
 //      LISTAR ACCESOS
 //---------------------------------
-function listarAccesosFromPer(ur){
+function listarAccesosFromPer(ur) {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', ur, true);
     xhttp.send();

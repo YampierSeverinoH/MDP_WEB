@@ -163,7 +163,7 @@ include("../menu.php");
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="button" onclick="RegistroPersonal();CreateUsuarioFPer();corecto();" value="Guardar">
+                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="button" onclick="RegistroPersonal();CreateUsuarioFPer();" value="Guardar">
                 </div>
             </div>
 
