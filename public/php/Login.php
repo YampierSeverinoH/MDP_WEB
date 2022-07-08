@@ -1,6 +1,5 @@
 <?php
 include("../cabecera.php");
-
 ?>
 
 <body>

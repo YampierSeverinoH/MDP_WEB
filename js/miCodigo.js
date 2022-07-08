@@ -1,3 +1,4 @@
+
 var url = "";
 var php = "";
 
@@ -7,14 +8,12 @@ function ListarDepartamentos(ur) {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', ur, true);
     xhttp.send();
-
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#slcDep');
             res.innerHTML = '';
-
             for (let item of datos) {
                 res.innerHTML += `
                 <option value='${item.id_ubigeo}'>${item.nombre_ubigeo}</option>`;
@@ -27,12 +26,10 @@ function ListarProvincia(ur) {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', ur, true);
     xhttp.send();
-
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
-
             let res = document.querySelector('#slcProv');
             res.innerHTML = '';
             for (let item of datos[operation]) {
@@ -49,9 +46,7 @@ function ListarDistritos(ur) {
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
-
             let res = document.querySelector('#slcDist');
             res.innerHTML = '';
             for (let item of datos[operation]) {
@@ -64,7 +59,6 @@ function ListarDistritos(ur) {
 function PreVisualizarPerfil() {
     const $seleccionArchivos = document.querySelector("#FileFormPerfil"),
         $imagenPrevisualizacion = document.querySelector("#imagenFormPerfil");
-
     $seleccionArchivos.addEventListener("change", () => {
         const archivos = $seleccionArchivos.files;
         if (!archivos || !archivos.length) {
@@ -76,11 +70,9 @@ function PreVisualizarPerfil() {
         $imagenPrevisualizacion.src = objectURL;
     });
 }
-
 function PreVisualizarHuella() {
     const $seleccionArchivos = document.querySelector("#FileFormHuella"),
         $imagenPrevisualizacion = document.querySelector("#imagenFormHuella");
-
     $seleccionArchivos.addEventListener("change", () => {
         const archivos = $seleccionArchivos.files;
         if (!archivos || !archivos.length) {
@@ -91,8 +83,6 @@ function PreVisualizarHuella() {
         const objectURL = URL.createObjectURL(primerArchivo);
         $imagenPrevisualizacion.src = objectURL;
     });
-
-
 }
 function RegArea() {
     console.log("acceso");
@@ -114,7 +104,6 @@ function RegArea() {
 }
 //LISTAR AREAS
 function ListarAreas(ur) {
-
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', ur, true);
     xhttp.send();
@@ -158,10 +147,8 @@ function ListarAreasSelect(ur) {
             } else {
                 for (let item of datos) {
                     res.innerHTML += `<option value="${item.Are_Id}">${item.Are_Nombre}</option>`;
-
                 }
             }
-
         }
     }
 }
@@ -178,12 +165,11 @@ function UpdateArea() {
         "action": "actualizar"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_area.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data,
+        url: '/Model/WebService/ws_area.php',
+        type: 'post',
     });
 }
-//<a href="/Model/WebService/ws_area.php?id=${item.Are_Id}&action=Editar" class="btn btn-primary">Editar</a>
 
 //CRUD DE CARGOS
 function RegCargo() {
@@ -198,9 +184,9 @@ function RegCargo() {
     };
 
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_cargo.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data,
+        url: '/Model/WebService/ws_cargo.php',
+        type: 'post',
     });
 }
 function leerEsatdo(estado) {
@@ -245,7 +231,6 @@ function ListarCargo(ur) {
     }
 }
 function ListarCargoSelect(ur) {
-
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', ur, true);
     xhttp.send();
@@ -260,10 +245,8 @@ function ListarCargoSelect(ur) {
             } else {
                 for (let item of datos) {
                     res.innerHTML += `<option value="${item.Car_Id}">${item.Car_nombre}</option>`;
-
                 }
             }
-
         }
     }
 }
@@ -280,14 +263,13 @@ function UpdateCargo() {
         "action": "actualizar"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_cargo.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data,
+        url: '/Model/WebService/ws_cargo.php',
+        type: 'post',
     });
 }
 //REGISTRO DEL PERSONAL
 function RegistroPersonal() {
-
     var data = {
         "txtNombre": document.getElementById("txtNombre").value,
         "txtApellido": document.getElementById("txtApellido").value,
@@ -300,9 +282,7 @@ function RegistroPersonal() {
         "email": document.getElementById("txtEmaPer").value,
         "telefono": document.getElementById("txtTelPer").value,
         "sexo": document.getElementById("slcSexo").value,
-        "action": "Registro"
-    };
-    
+        "action": "Registro"};
     $.ajax({
         data: data,
         url: '/Model/WebService/ws_persona.php',
@@ -315,7 +295,6 @@ function RegistroPersonal() {
                 CreateUsuarioFPer();
                 AsignaiconAC();
                 AsignaiconRoles();
-                //location().href('/public/Personal/PerLisForm.php');
             }
 
         }
@@ -334,9 +313,9 @@ function CreateUsuarioFPer() {
         "action": "Registro"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data, 
+        url: '/Model/WebService/ws_usuario.php',
+        type: 'post',
         success: function (json) {
         }
     });
@@ -354,9 +333,9 @@ function AsignaiconAC(){
         "action": "RegistroAsignacion"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_usuario.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data, 
+        url: '/Model/WebService/ws_usuario.php', 
+        type: 'post',
         success: function (json) {
         }
     });
@@ -373,9 +352,9 @@ function AsignaiconRoles(){
         "action": "Registro"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_rol.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data,
+        url: '/Model/WebService/ws_rol.php',
+        type: 'post',
         success: function (json) {
             console.log("acabo");
         }
@@ -396,7 +375,6 @@ function ListarPersonaTable(ur) {
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#tddataTablePersona');
             res.innerHTML = '';
@@ -441,7 +419,6 @@ function InhabilitarUser(id) {
             alert("Eliminar");
         }
     });
-
 }
 function DeletePersonaListar(bar) {
     var data = {
@@ -453,7 +430,7 @@ function DeletePersonaListar(bar) {
         url: '/Model/WebService/ws_persona.php',
         type: 'post',
         success: function (json) {
-            alert("Eliminar");
+            //no hay respues de ws
         }
     });
 }
@@ -501,14 +478,12 @@ function ListarDepartamentos(id) {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', '/js/api_departamentos.json', true);
     xhttp.send();
-
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#slcDep');
             res.innerHTML = '';
-
             for (let item of datos) {
                 if (item.id_ubigeo == id) {
                     res.innerHTML += `
@@ -517,7 +492,6 @@ function ListarDepartamentos(id) {
                     res.innerHTML += `
                     <option value='${item.id_ubigeo}'>${item.nombre_ubigeo}</option>`;
                 }
-
             }
         }
     }
@@ -526,12 +500,10 @@ function ListarProvinciaUpd(id, id2) {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', '/js/api_provincias.json', true);
     xhttp.send();
-
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
-
             let res = document.querySelector('#slcProv');
             res.innerHTML = '';
             for (let item of datos[id]) {
@@ -542,7 +514,6 @@ function ListarProvinciaUpd(id, id2) {
                     res.innerHTML += `
                     <option value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
                 }
-
             }
         }
     }
@@ -553,9 +524,7 @@ function ListarDistritosUpd(id, id2) {
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
-
             let res = document.querySelector('#slcDist');
             res.innerHTML = '';
             for (let item of datos[id]) {
@@ -566,7 +535,6 @@ function ListarDistritosUpd(id, id2) {
                     res.innerHTML += `
                     <option value="${item.id_ubigeo}">${item.nombre_ubigeo}</option>`;
                 }
-
             }
         }
     }
@@ -587,13 +555,10 @@ function MuestraPersonalEditar(id) {
             document.getElementById("idtxtEmail").value = json[0]['Per_Correo'];
             document.getElementById("idTxtTel").value = json[0]['Per_Celular'];
             $("#idOculto").attr("value", json[0]['Per_Id']);
-            //document.getElementById("idOculto").value = json[0]['Per_Id'];
             $("#slcSexo > option[value='" + json[0]['Per_Sexo'] + "']").attr("selected", true);
-
             ListarDepartamentos(json[0]['Per_Departamento']);
             ListarProvinciaUpd(json[0]['Per_Departamento'], json[0]['Per_Provincia']);
             ListarDistritosUpd(json[0]['Per_Provincia'], json[0]['Per_Distrito']);
-
         }
     });
 }
@@ -611,9 +576,9 @@ function SavePersonalEditar(id) {
         "action": "Actualizar"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
-        type: 'post', //método de envio
+        data: data,
+        url: '/Model/WebService/ws_persona.php',
+        type: 'post',
         success: function (json) {
             alert("Registrado");
         }
@@ -625,8 +590,8 @@ function DeletePersonalListar() {
         "action": "Actualizar"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_persona.php', //archivo que recibe la peticion
+        data: data,
+        url: '/Model/WebService/ws_persona.php',
         type: 'post', //método de envio
         success: function (json) {
             alert("Eliminado");
@@ -645,8 +610,8 @@ function ObtenerPermisosMenu(id) {
         "action": "Cargar"
     };
     $.ajax({
-        data: data, //datos que se envian a traves de ajax
-        url: '/Model/WebService/ws_rol.php', //archivo que recibe la peticion
+        data: data,
+        url: '/Model/WebService/ws_rol.php',
         type: 'post', //método de envio
         success: function (json) {
 
@@ -722,7 +687,6 @@ function listarAccesosFromPer(ur) {
             } else {
                 for (let item of datos) {
                     res.innerHTML += `<option value="${item.Rol_Id}">${item.Rol_Descripcion}</option>`;
-
                 }
             }
 
