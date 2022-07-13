@@ -282,14 +282,15 @@ function RegistroPersonal() {
         "email": document.getElementById("txtEmaPer").value,
         "telefono": document.getElementById("txtTelPer").value,
         "sexo": document.getElementById("slcSexo").value,
-        "action": "Registro"};
+        "action": "Registro"
+    };
     $.ajax({
         data: data,
         url: '/Model/WebService/ws_persona.php',
         type: 'post',
         success: function (json) {
             if (json == "Error") {
-                swal(json, "No se registro correctamente",'error');
+                swal(json, "No se registro correctamente", 'error');
                 console.error("no se llenaron los campos correctamente");
             } else {
                 CreateUsuarioFPer();
@@ -313,7 +314,7 @@ function CreateUsuarioFPer() {
         "action": "Registro"
     };
     $.ajax({
-        data: data, 
+        data: data,
         url: '/Model/WebService/ws_usuario.php',
         type: 'post',
         success: function (json) {
@@ -323,7 +324,7 @@ function CreateUsuarioFPer() {
 //---------------------------------
 //      ASIGNACION DE FUCNIONES 
 //---------------------------------
-function AsignaiconAC(){
+function AsignaiconAC() {
     var data = {
 
         "Area": document.getElementById("slcArea").value,
@@ -333,8 +334,8 @@ function AsignaiconAC(){
         "action": "RegistroAsignacion"
     };
     $.ajax({
-        data: data, 
-        url: '/Model/WebService/ws_usuario.php', 
+        data: data,
+        url: '/Model/WebService/ws_usuario.php',
         type: 'post',
         success: function (json) {
         }
@@ -343,10 +344,10 @@ function AsignaiconAC(){
 //---------------------------------
 //      ASIGNACION DE Roles 
 //---------------------------------
-function AsignaiconRoles(){
+function AsignaiconRoles() {
     var data = {
 
-        "rol":document.getElementById("slcRoles").value,
+        "rol": document.getElementById("slcRoles").value,
         "fecha": document.getElementById("FechaInicio").value,
         "documento": document.getElementById("txtDocPer").value,
         "action": "Registro"
@@ -692,4 +693,51 @@ function listarAccesosFromPer(ur) {
 
         }
     }
+}
+function obtenerValorCovid() {
+    var p1;
+    var p2 = document.getElementById("p02y").value;
+    var p4 = document.getElementById("p03y").value;
+    var p4 = document.getElementById("p04y").value;
+    var p5 = document.getElementById("p05y").value;
+    var p6 = document.getElementById("p06y").value;
+    var p7 = document.getElementById("p07y").value;
+    var p8 = document.getElementById("p08y").value;
+    var p9 = document.getElementById("p09y").value;
+    var p10 = document.getElementById("p010y").value;
+    var p11 = document.getElementById("p011y").value;
+
+
+    if (document.getElementById("p01y").value == 'on') {
+        p1 = "true";
+    } else {
+        p1 = "false";
+    }
+
+}
+function RespuestaCovid() {
+    obtenerValorCovid();
+    // var data = {
+    //     "pc1": document.getElementById("txtNombre").value,
+    //     "pc2": document.getElementById("txtNombre").value,
+    //     "pc3": document.getElementById("txtNombre").value,
+    //     "pc4": document.getElementById("txtNombre").value,
+    //     "pc5": document.getElementById("txtNombre").value,
+    //     "pc6": document.getElementById("txtNombre").value,
+    //     "pc7": document.getElementById("txtNombre").value,
+    //     "pc8": document.getElementById("txtNombre").value,
+    //     "pc9": document.getElementById("txtNombre").value,
+    //     "pc10": document.getElementById("txtNombre").value,
+    //     "pc11": document.getElementById("txtNombre").value,
+    //     "id": id,
+    //     "action": "Registro"
+    // };
+    // $.ajax({
+    //     data: data,
+    //     url: '/Model/WebService/ws_persona.php',
+    //     type: 'post',
+    //     success: function (json) {
+    //         alert("Registrado");
+    //     }
+    // });
 }

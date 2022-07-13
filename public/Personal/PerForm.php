@@ -4,7 +4,7 @@ include("../menu.php");
 ?>
 
 <!--  este apartado es el contenido del programa -->
-<div class="col-9" ">
+<div class="col-9" >
    <div class=" ContForm">
     <form action="PerInsForm.php" method="POST" enctype="multipart/form-data">
         <center>

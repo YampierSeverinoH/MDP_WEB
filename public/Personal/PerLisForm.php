@@ -5,7 +5,7 @@ include("../menu.php");
 <script>
     ListarPersonaTable('<?php echo WS . '/ws_persona.php' ?>');
 </script>
-<div class="col-9" ">
+<div class="col-9" >
    <div class=" ContForm">
     <center>
         <h1 class="h4">LISTA DE PERSONAL</h1>
