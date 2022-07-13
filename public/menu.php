@@ -39,7 +39,7 @@ $iduser = $_SESSION['idUsuario'];
                         <button class="btn btn-outline-info btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#Marcarciones" aria-expanded="false">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">
-                                    Asistencias
+                                    CONTROL COVID-19
                                 </font>
                             </font>
                         </button></br>

@@ -1,6 +1,6 @@
 <?PHP
 include("../menu.php");
-
+$iduser = $_SESSION['idUsuario'];
 ?>
 
 <!--  este apartado es el contenido del programa -->
@@ -28,12 +28,12 @@ include("../menu.php");
 
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p01" id="p01y">
+                                        <input class="form-check-input" type="radio" name="p01" value="0" id="p01y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p01" id="p01n" checked>
+                                        <input class="form-check-input" type="radio" name="p01" id="p01n" value="1" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -42,12 +42,12 @@ include("../menu.php");
                                 <td>Dolor de garganta, tos estornudos o dificultad para respirar</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p02" id="p02y">
+                                        <input class="form-check-input" type="radio"  value="0" name="p02" id="p02y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p02" id="p02n" checked>
+                                        <input class="form-check-input" type="radio" value="1"  name="p02" id="p02n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -56,12 +56,12 @@ include("../menu.php");
                                 <td>Dolor de cabeza o diarrea o congestión nasal</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p03" id="p03y">
+                                        <input class="form-check-input" type="radio" value="0"  name="p03" id="p03y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p03" id="p03n" checked>
+                                        <input class="form-check-input" type="radio" value="1"  name="p03" id="p03n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -70,12 +70,12 @@ include("../menu.php");
                                 <td>Contacto con un caso confirmado de COVID-19</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p04" id="p04y">
+                                        <input class="form-check-input" type="radio" value="0"  name="p04" id="p04y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p04" id="p04n" checked>
+                                        <input class="form-check-input" type="radio"  value="1" name="p04" id="p04n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -84,12 +84,12 @@ include("../menu.php");
                                 <td>Está tomado alguna medicación</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p05" id="p05y">
+                                        <input class="form-check-input" type="radio"  value="0" name="p05" id="p05y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p05" id="p05n" checked>
+                                        <input class="form-check-input" type="radio" value="1"  name="p05" id="p05n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -98,12 +98,12 @@ include("../menu.php");
                                 <td>Perdida del gusto y/o del olfato </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p06" id="p06y">
+                                        <input class="form-check-input" type="radio" value="0"  name="p06" id="p06y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p06" id="p06n" checked>
+                                        <input class="form-check-input" type="radio" value="1"  name="p06" id="p06n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -112,12 +112,12 @@ include("../menu.php");
                                 <td>Pertenece a algún grupo de riesgo para COVID-19</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p07" id="p07y">
+                                        <input class="form-check-input" type="radio"  value="0" name="p07" id="p07y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p07" id="p07n" checked>
+                                        <input class="form-check-input" type="radio"  value="1" name="p07" id="p07n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -126,12 +126,12 @@ include("../menu.php");
                                 <td>No tener historial de viajes o residencia en zonas definidas de riesgo (China, Italia, Irán, Corea del Sur, Francia, Alemania, España, EE.UU., Brasil y cualquier otro país que considere relevante para efectos de contagios del COVID-19) en los últimos 14 días</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p08" id="p08y">
+                                        <input class="form-check-input" type="radio" value="0"  name="p08" id="p08y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p08" id="p08n" checked>
+                                        <input class="form-check-input" type="radio"  value="1" name="p08" id="p08n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -140,12 +140,12 @@ include("../menu.php");
                                 <td>No haber tenido contacto cercano con un caso probable o confirmado de infección por coronavirus de los últimos 145 días anteriores al ingreso a la Municipalidad distrital de Pucalá</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p09" id="p09y">
+                                        <input class="form-check-input" type="radio" value="0"  name="p09" id="p09y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p09" id="p09n" checked>
+                                        <input class="form-check-input" type="radio"  value="1" name="p09" id="p09n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -154,12 +154,12 @@ include("../menu.php");
                                 <td>No haber asistido en los últimos 14 días a lugares con afluencia masiva de personas extranjeras, estableciendo contacto directo y cercano especial con personas provenientes de lugares con casos confinados de coronavirus COVID-19; sobre todo respecto a los países mencionado en el presente documento</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p010" id="p010y">
+                                        <input class="form-check-input" type="radio" value="0"  name="p010" id="p010y">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p010" id="p010n" checked>
+                                        <input class="form-check-input" type="radio" value="1"  name="p010" id="p010n" checked>
                                     </div>
                                 </td>
                             </tr>
@@ -168,12 +168,12 @@ include("../menu.php");
                                 <td>11. He tomado conocimiento de todos los procedimientos t protocolos implementados por la MUNICIPALIDAD DISTRITAL DE PUCALÁ para prevenir y controlar el contagio de COVID-19, e incluso declaró conocer que eh sido informado.</td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p011" id="p011y" checked>
+                                        <input class="form-check-input" type="radio" value="0"  name="p011" id="p011y" checked>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="p011" id="p011n">
+                                        <input class="form-check-input" type="radio"  value="1" name="p011" id="p011n">
                                     </div>
                                 </td>
                             </tr>
@@ -186,7 +186,7 @@ include("../menu.php");
                 <div class="row justify-content-center">
                     <div class="col col-2">
                         <!-- agregar funcionalidad js -->
-                        <input name="" id="" class="btn btn-primary" type="button" value="Guardar" onclick="RespuestaCovid()">
+                        <input name="" id="" class="btn btn-primary" type="button" value="Guardar" onclick="RespuestaCovid(<?php echo $iduser ;?>)">
                     </div>
                 </div>
             </div>

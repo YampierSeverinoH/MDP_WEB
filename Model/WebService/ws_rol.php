@@ -15,7 +15,7 @@ if ($method == "POST") {
         FROM tbrolusuario ru INNER JOIN tbrol r ON r.Rol_Id=ru.RolUsu_IdRol
         INNER JOIN tbrolacceso ra ON ra.RolAcc_IdRol=r.Rol_Id
         INNER JOIN tbacceso a ON a.Acc_Id=ra.RolAcc_IdAcceso
-        WHERE ru.RolUsu_IdUsuario='" . $_POST['id'] . "'";
+        WHERE ra.RolAcc_Estado='A' AND ru.RolUsu_IdUsuario='" . $_POST['id'] . "' ";
         $res = $con->findAll($sql);
         $con->desconectar();
         echo json_encode($res);
@@ -41,7 +41,7 @@ if ($method == "GET") {
     if (isset($_POST['action'])) {
         //
     } else {
-        $sql = "SELECT * FROM tbrol";
+        $sql = "SELECT * FROM tbrol ";
         $res = $con->findAll($sql);
         $con->desconectar();
         echo json_encode($res);

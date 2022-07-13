@@ -694,50 +694,76 @@ function listarAccesosFromPer(ur) {
         }
     }
 }
-function obtenerValorCovid() {
-    var p1;
-    var p2 = document.getElementById("p02y").value;
-    var p4 = document.getElementById("p03y").value;
-    var p4 = document.getElementById("p04y").value;
-    var p5 = document.getElementById("p05y").value;
-    var p6 = document.getElementById("p06y").value;
-    var p7 = document.getElementById("p07y").value;
-    var p8 = document.getElementById("p08y").value;
-    var p9 = document.getElementById("p09y").value;
-    var p10 = document.getElementById("p010y").value;
-    var p11 = document.getElementById("p011y").value;
 
-
-    if (document.getElementById("p01y").value == 'on') {
-        p1 = "true";
-    } else {
-        p1 = "false";
+function RespuestaCovid(id) {
+    var p1, p2, p3, p4, p5, p6, p7, p8, p8, p10, p11;
+    let estado;
+    if (document.getElementsByName("p01")[1].checked) { p1 = "0"; } else { p1 = "1"; }
+    if (document.getElementsByName("p02")[1].checked) { p2 = "0"; } else { p2 = "1"; }
+    if (document.getElementsByName("p03")[1].checked) { p3 = "0"; } else { p3 = "1"; }
+    if (document.getElementsByName("p04")[1].checked) { p4 = "0"; } else { p4 = "1"; }
+    if (document.getElementsByName("p05")[1].checked) { p5 = "0"; } else { p5 = "1"; }
+    if (document.getElementsByName("p06")[1].checked) { p6 = "0"; } else { p6 = "1"; }
+    if (document.getElementsByName("p07")[1].checked) { p7 = "0"; } else { p7 = "1"; }
+    if (document.getElementsByName("p08")[1].checked) { p8 = "0"; } else { p8 = "1"; }
+    if (document.getElementsByName("p09")[1].checked) { p9 = "0"; } else { p9 = "1"; }
+    if (document.getElementsByName("p010")[1].checked) { p10 = "0"; } else { p10 = "1"; }
+    if (document.getElementsByName("p011")[1].checked) { p11 = "0"; } else { p11 = "1"; }
+    if( p1 == "0" && p2 == "0" && p3 == "0" && p4 == "0" && p5 == "0" && p6 == "0" && p7 == "0" && p8 == "0" && p9 == "0" && p10 == "0" && p11 == "1"){
+        estado='N';
+    }else{
+        estado='R';
     }
+    var data = {
+        "pc1": p1, "pc2": p2,
+        "pc3": p3, "pc4": p4,
+        "pc5": p5, "pc6": p6,
+        "pc7": p7, "pc8": p8,
+        "pc9": p9, "pc10": p10,
+        "pc11": p11,
+        //n:normal - r:riesgo
+        "estado":estado,
+        "id": id,
+        "action": "Registro"
+    };
+
+    $.ajax({
+        data: data,
+        url: '/Model/WebService/ws_preguntas.php',
+        type: 'post',
+        success: function (json) {
+            alert("Registrado");
+        }
+    });
 
 }
-function RespuestaCovid() {
-    obtenerValorCovid();
-    // var data = {
-    //     "pc1": document.getElementById("txtNombre").value,
-    //     "pc2": document.getElementById("txtNombre").value,
-    //     "pc3": document.getElementById("txtNombre").value,
-    //     "pc4": document.getElementById("txtNombre").value,
-    //     "pc5": document.getElementById("txtNombre").value,
-    //     "pc6": document.getElementById("txtNombre").value,
-    //     "pc7": document.getElementById("txtNombre").value,
-    //     "pc8": document.getElementById("txtNombre").value,
-    //     "pc9": document.getElementById("txtNombre").value,
-    //     "pc10": document.getElementById("txtNombre").value,
-    //     "pc11": document.getElementById("txtNombre").value,
-    //     "id": id,
-    //     "action": "Registro"
-    // };
-    // $.ajax({
-    //     data: data,
-    //     url: '/Model/WebService/ws_persona.php',
-    //     type: 'post',
-    //     success: function (json) {
-    //         alert("Registrado");
-    //     }
-    // });
+function ListarEstadoPersonal(ur) {
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', ur, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(this.responseText);
+            let datos = JSON.parse(this.responseText);
+            let res = document.querySelector('#ConModPersonal');
+            res.innerHTML = '';
+            if (datos === "") {
+                alert("no existen datos");
+            } else {
+                for (let item of datos) {
+                    res.innerHTML += `
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title text-center">${item.Car_nombre}</h5>
+                        <p class="card-text text-start">${item.Car_Descripcion}</p>
+                        <p class="card-text">Estado: ${leerEsatdo(item.Car_Estado)}</p><br>
+                        
+                        </div>
+                  </div>`;
+                }
+            }
+
+        }
+    }
 }
