@@ -25,24 +25,7 @@ if ($method == "POST") {
         $con->desconectar();
         echo json_encode($res);
     }
-    if ($accion == "Actualizar") {
-        $sql = "";
-        $res = $con->exec($sql);
-        $con->desconectar();
-        echo json_encode($res);
-    }
-    if ($accion == "extrae") {
-        $Q = $_POST['id'];
-        $sql = "";
-        $res = $con->findAll($sql);
-        $con->desconectar();
-        echo json_encode($res);
-    }
-    if ($accion == "Eliminar") {
-        $sql = "";
-        $res = $con->exec($sql);
-        $con->desconectar();
-    }
+    
 }
 if ($method == "GET") {
     if (isset($_GET['action'])) {
@@ -60,7 +43,19 @@ if ($method == "GET") {
             echo json_encode($res);
         }
     } else {
-        $sql = "";
+        $sql = "SELECT 
+        tb.Pre_estado, 
+        tb.Pre_Fecha, 
+        CONCAT(p.Per_Nombre,', ',p.Per_ApePatMat) AS nombre,
+        p.Per_Foto,
+        are.Are_Descripcion,
+        c.Car_nombre
+        FROM 
+        tb_preguntas tb INNER JOIN tbusuario u ON u.Usu_Id=tb.Pre_idUser
+        INNER JOIN tbpersona p ON p.Per_Id=u.Usu_idPersona 
+        INNER JOIN tbatcasignacion a ON a.Atc_IdUsuario=u.Usu_Id
+        INNER JOIN tbarea are ON are.Are_Id=a.Atc_IdArea
+        INNER JOIN tbcargo c ON c.Car_Id=a.Atc_IdCargo where Pre_Fecha='".date('Y-m-d')."'";
         $res = $con->findAll($sql);
         $con->desconectar();
         echo json_encode($res);

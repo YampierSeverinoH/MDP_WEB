@@ -12,8 +12,8 @@ include("../menu.php");
         </center>
         <div class="container">
             <div class="row">
-                    <div id="ConModPersonal" class="row row-cols-3">
-
+                    <div id="ConModPersonal" class="row row-cols-3 gap-3">
+                        
                     </div>
             </div>
         </div>

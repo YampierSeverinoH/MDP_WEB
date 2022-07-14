@@ -18,8 +18,8 @@ if ($method == "POST") {
     }
     if ($accion == "Registro") {
 
-       if(isset($_POST['txtNombre']) && !empty($_POST['txtNombre'])){
-        $sql = "INSERT INTO tbpersona
+        if (isset($_POST['txtNombre']) && !empty($_POST['txtNombre'])) {
+            $sql = "INSERT INTO tbpersona
         (Per_Nombre,
         Per_ApePatMat,
         Per_Direccion,
@@ -43,12 +43,12 @@ if ($method == "POST") {
         '" . $_POST['sexo'] . "',
         '" . $_POST['fechaNac'] . "',
         '" . $_POST['documento'] . "');";
-        $res = $con->exec($sql);
-        $con->desconectar();
-        echo json_encode($res);
-       }else{
-        echo json_encode("Error");
-       }
+            $res = $con->exec($sql);
+            $con->desconectar();
+            echo json_encode($res);
+        } else {
+            echo json_encode("Error");
+        }
     }
     if ($accion == "Actualizar") {
         $sql = "UPDATE tbpersona

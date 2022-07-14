@@ -1,12 +1,12 @@
-<?php
-if(isset($_GET['id'])){
-    echo "<h1>correcto el aii es '".$_GET['id']."'</h1>";
-}
-$destinatario='correo al que se enviara';
+<?Php
+$destinatario='gisiji4371@satedly.com';
 
 $nombre='';
 $asunto='';
-$nombre='';
 $mensaje='';
-$nombre='';
+$email='yam.gil.sh@gmail.com';
+
+$header = "Enviar desde la pagina a temp mail";
+$mensajeCompleto=$mensaje."\nAtentamente".$nombre;
+mail($destinatario,$asunto,$mensajeCompleto,$header);
 ?>

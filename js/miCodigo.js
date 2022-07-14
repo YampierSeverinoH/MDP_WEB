@@ -709,10 +709,10 @@ function RespuestaCovid(id) {
     if (document.getElementsByName("p09")[1].checked) { p9 = "0"; } else { p9 = "1"; }
     if (document.getElementsByName("p010")[1].checked) { p10 = "0"; } else { p10 = "1"; }
     if (document.getElementsByName("p011")[1].checked) { p11 = "0"; } else { p11 = "1"; }
-    if( p1 == "0" && p2 == "0" && p3 == "0" && p4 == "0" && p5 == "0" && p6 == "0" && p7 == "0" && p8 == "0" && p9 == "0" && p10 == "0" && p11 == "1"){
-        estado='N';
-    }else{
-        estado='R';
+    if (p1 == "0" && p2 == "0" && p3 == "0" && p4 == "0" && p5 == "0" && p6 == "0" && p7 == "0" && p8 == "0" && p9 == "0" && p10 == "0" && p11 == "1") {
+        estado = 'N';
+    } else {
+        estado = 'R';
     }
     var data = {
         "pc1": p1, "pc2": p2,
@@ -722,7 +722,7 @@ function RespuestaCovid(id) {
         "pc9": p9, "pc10": p10,
         "pc11": p11,
         //n:normal - r:riesgo
-        "estado":estado,
+        "estado": estado,
         "id": id,
         "action": "Registro"
     };
@@ -737,14 +737,21 @@ function RespuestaCovid(id) {
     });
 
 }
-function ListarEstadoPersonal(ur) {
-
+function leeEstadocovid(estado) {
+    var es;
+    if (estado === 'N') {
+        es = "NORMAL";
+    } else {
+        es = "RIESGO";
+    }
+    return es;
+}
+function ListarEstadoPersonal() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', ur, true);
+    xhttp.open('GET', '/Model/WebService/ws_preguntas.php', true);
     xhttp.send();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            // console.log(this.responseText);
             let datos = JSON.parse(this.responseText);
             let res = document.querySelector('#ConModPersonal');
             res.innerHTML = '';
@@ -752,15 +759,35 @@ function ListarEstadoPersonal(ur) {
                 alert("no existen datos");
             } else {
                 for (let item of datos) {
-                    res.innerHTML += `
-                    <div class="card">
-                        <div class="card-body">
-                        <h5 class="card-title text-center">${item.Car_nombre}</h5>
-                        <p class="card-text text-start">${item.Car_Descripcion}</p>
-                        <p class="card-text">Estado: ${leerEsatdo(item.Car_Estado)}</p><br>
-                        
+                    if (item.Pre_estado === 'N') {
+                        res.innerHTML += `
+                        <div class="card text-bg-success mb-3" style="width: 18rem;">
+                            <img src="${'/Model/WebService/fotos/' + item.Per_Foto}" class="card-img-top" alt="no encontrada">
+                            <div class="card-body">
+                                <h4 class="card-title">${item.nombre}</h4>
+                                 <h5 class="card-title">${'(' + item.Pre_Fecha + ')'}</h5>
+                                <p class="card-text">Estado: ${leeEstadocovid(item.Pre_estado)}</p>
+                                <p class="card-text">Area: ${item.Are_Descripcion}</p>
+                                <p class="card-text">Cargo: ${item.Car_nombre}</p>
+                            </div>
                         </div>
-                  </div>`;
+                        `;
+                    } else {
+                        res.innerHTML += `
+                        <div class="card card text-bg-danger mb-3" style="width: 18rem;">
+                            <img src="${'/Model/WebService/fotos/' + item.Per_Foto}" class="card-img-top" alt="no encontrada">
+                            <div class="card-body">
+                                <h4 class="card-title">${item.nombre}</h4>
+                                 <h5 class="card-title">${'(' + item.Pre_Fecha + ')'}</h5>
+                                <p class="card-text">Estado: ${leeEstadocovid(item.Pre_estado)}</p>
+                                <p class="card-text">Area:entrada no autorisada</p>
+                                <p class="card-text">Area: ${item.Are_Descripcion}</p>
+                                <p class="card-text">Cargo: ${item.Car_nombre}</p>
+                            </div>
+                        </div>
+                        `;
+                    }
+
                 }
             }
 

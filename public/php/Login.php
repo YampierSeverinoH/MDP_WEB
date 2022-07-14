@@ -28,7 +28,7 @@ include("../cabecera.php");
                                             //swal(tituñlo, mensaje,accion)
                                         ?>
                                             <script>
-                                                swal("Error", "<?php echo $error[$_GET['e']];  ?>", "error");
+                                                swal("Mensaje", "<?php echo $error[$_GET['e']];  ?>", "info");
                                             </script>
 
                                         <?php
