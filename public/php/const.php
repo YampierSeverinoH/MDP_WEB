@@ -8,6 +8,7 @@ define('PHP', CABECERA."/php");
 
 define('MODEL',LOCAL."/Model");
 define('WS',MODEL."/WebService");
+define('PERFIL',WS."/fotos/");
 
 define('PERSONAL', CABECERA."/Personal");
 define('AREA', CABECERA."/Area");

@@ -1,6 +1,5 @@
 <?php
 include("../cabecera.php");
-
 ?>
 
 <body>
@@ -16,7 +15,7 @@ include("../cabecera.php");
                             <p id="LoginTitulo">Bienvenido al sistema</p>
                             <p id="LoginMensaje">Sitema de control de asistencia de la Municipalidad Distrital de Pucalá</p>
                             <div id="LoginForm">
-                                <form action="<?php echo WS; ?>/ws_usuario.php" method="post">
+                                <form action="<?php echo WS; ?>/ValidarLogin.php" method="post">
                                     <p>
                                         <?php
                                         if (isset($_GET['e'])) {
@@ -29,7 +28,7 @@ include("../cabecera.php");
                                             //swal(tituñlo, mensaje,accion)
                                         ?>
                                             <script>
-                                                swal("Error", "<?php echo $error[$_GET['e']];  ?>", "error");
+                                                swal("Mensaje", "<?php echo $error[$_GET['e']];  ?>", "info");
                                             </script>
 
                                         <?php

@@ -4,7 +4,7 @@ include("../menu.php");
 ?>
 
 <!--  este apartado es el contenido del programa -->
-<div class="col-9" ">
+<div class="col-9" >
    <div class=" ContForm">
     <form action="PerInsForm.php" method="POST" enctype="multipart/form-data">
         <center>
@@ -13,6 +13,10 @@ include("../menu.php");
         <script>
             //aqui se llama al api departtamentos para que se a lo primero al iniciar la pagina
             ListarDepartamentos('<?php echo JS . '/api_departamentos.json' ?>');
+            ListarAreasSelect('<?php echo WS . '/ws_area.php' ?>');
+            ListarCargoSelect('<?php echo WS . '/ws_cargo.php' ?>');
+            listarAccesosFromPer('<?php echo WS . '/ws_rol.php' ?>')
+
         </script>
             <h5>Datos Personales</h5>
             <!-- REGISTRO DEL PERSONAL -->
@@ -27,7 +31,7 @@ include("../menu.php");
                     <div class="col">
                         <div class="form-group">
                             <label for="">Apellidos: </label>
-                            <input type="text" name="apellido" id="txtApellido" class="form-control" placeholder="Apellidos" aria-describedby="helpId">
+                            <input type="text" name="apellido"  id="txtApellido" class="form-control" placeholder="Apellidos" aria-describedby="helpId">
                         </div>
                     </div>
                 </div>
@@ -38,13 +42,13 @@ include("../menu.php");
                     <div class="col">
                         <div class="form-group">
                             <label for="">DNI: </label>
-                            <input type="text" name="" id="" class="form-control" placeholder="12345678" maxlength="8" aria-describedby="helpId">
+                            <input type="text" name="txtDocPer" id="txtDocPer" class="form-control" placeholder="12345678" maxlength="8" aria-describedby="helpId">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Fecha de Nacimiento: </label>
-                            <input type="date" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                            <input type="date" name="dateFecNacPer" id="dateFecNacPer" class="form-control" placeholder="" aria-describedby="helpId">
                         </div>
                     </div>
                 </div>
@@ -54,7 +58,7 @@ include("../menu.php");
                     <div class="col-5">
                         <div class="form-group">
                             <label for="">Direccion: </label>
-                            <input type="text" name="direccion" id="txtDir" class="form-control" placeholder="Jr. Av. Calle. direccion #32 " aria-describedby="helpId">
+                            <input type="text" name="txtDirper" id="txtDirper" class="form-control" placeholder="Jr. Av. Calle. direccion #32 " aria-describedby="helpId">
                         </div>
                     </div>
                     <div class="col">
@@ -86,21 +90,21 @@ include("../menu.php");
                     <div class="col">
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" class="form-control" name="txtEmail" id="idtxtEmail" aria-describedby="emailHelpId" placeholder="email@email.xyz">
+                            <input type="email" class="form-control" name="txtEmaPer" id="txtEmaPer" aria-describedby="emailHelpId" placeholder="email@email.xyz">
 
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Telefono</label>
-                            <input type="tel" class="form-control" name="txtTel" id="idTxtTel" aria-describedby="emailHelpId" placeholder="+51 000 000 000">
+                            <input type="tel" class="form-control" name="txtTelPer" id="txtTelPer" aria-describedby="emailHelpId" placeholder="+51 000 000 000">
 
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Sexo</label>
-                            <select class="form-control" name="" id="slcSexo">
+                            <select class="form-control" name="slcSexo" id="slcSexo">
                                 <option value="m">Masculino</option>
                                 <option value="f">Femenino</option>
                                 <option value="x">otros</option>
@@ -114,13 +118,13 @@ include("../menu.php");
             <!-- REGISTRO DE CARGOS -->
             <div class="container">
                 <div class="ContForm">
-                    <h5>Asignacion de cargo</h5>
+                    <h5>Asignacion</h5>
                     <div class="row justify-content-start">
                         <!-- area -->
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Area:</label>
-                                <select class="form-control" name="" id="slcArea">
+                                <select class="form-control" name="slcArea" id="slcArea">
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -137,54 +141,29 @@ include("../menu.php");
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="">Fecha de inicio:</label>
-                                <input class="form-control" type="date" name="fechaInicio" id="">
+                                <label for="">Rol:</label>
+                                <select class="form-control" name="" id="slcRoles">
+                                    <option value=""></option>
+                                </select>
                             </div>
                             <br>
                         </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Fecha de inicio:</label>
+                                <input class="form-control" type="date" name="fechaInicio" id="FechaInicio">
+                            </div>
+                            <br>
+                        </div>
+                       
                     </div>
                 </div>
             </div><br>
-            <!-- REGISTRO DE FOTO DE PERFIL Y DE HUELLAS -->
-            <div class="container">
-                <!-- imagenes a cargar -->
-                <div class="ContForm">
-                    <h5>Cargar imagenes</h5>
-                    <br>
-                    <div class="row justify-content-start">
-                        <!-- subir imagen de foto -->
-                        <div class="col">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">Foto de perfil</label><br>
-                                    <input type="file" class="form-control-file" onclick="PreVisualizarPerfil()" name="" id="FileFormPerfil" placeholder="" aria-describedby="fileHelpId">
-                                </div>
-                            </div><br>
-                            <div class="row justify-content-center">
-                                <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormPerfil">
-                            </div>
-                        </div>
-                        <!-- subir imagen de huella -->
-
-                        <div class="col">
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">Huella digital</label><br>
-                                    <input type="file" class="form-control-file" onclick="PreVisualizarHuella()" name="" id="FileFormHuella" placeholder="" aria-describedby="fileHelpId">
-                                </div>
-                            </div><br>
-                            <div class="row justify-content-center">
-                                <img src="" alt="" style="height: 50%; width:50% ;" id="imagenFormHuella">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div><br>
+            
             <!-- BOTON DE ENVIO -->
             <div class="container">
                 <div class="row justify-content-center">
-                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="submit" value="Guardar">
+                    <input name="btnGuardar" id="btnFormRegPer" class="btn btn-outline-success" type="button" onclick="RegistroPersonal();" value="Guardar">
                 </div>
             </div>
 
@@ -193,7 +172,6 @@ include("../menu.php");
 </div>
 </div>
 </div>
-
 </div>
 </body>
 

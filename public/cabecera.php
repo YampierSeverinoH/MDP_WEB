@@ -1,6 +1,8 @@
 <?php
-
-?>
+// if($_SERVER['HTTP_REFERER']==""){
+//     header ("Location:../php/Login.php");
+// }
+?> 
 
 <!DOCTYPE html>
 <html lang="es">
